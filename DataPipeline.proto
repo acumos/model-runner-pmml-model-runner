@@ -1,0 +1,71 @@
+syntax = "proto3";
+import "google/api/annotations.proto";
+
+package DataPipelineService;
+
+enum IdentifierType{
+  READ_DATASOURCE=0;
+  PUBLISHER_JOB=1;
+  SUBSCRIBER_JOB=2;
+  TRANSFORMER_JOB=3;
+  PIPELINEPOOL=4;
+  TOPIC=5;
+  PROCESSOR=6;
+  PIPELINE=7;
+  DATA=8;
+  WRITE_DATASOURCE=9;
+  SINK_JOB=10;
+}
+
+enum SERVICE_STATUS {
+        ACTIVE=0; // READY FOR USE
+        INACTIVE=1; // Can be Made Active
+        FAILED=2; // FAILED TO START SERVICE
+        EXCEPTION=3; // GETTING EXCEPTION FROM DEPENDENCIES
+        INPROGRESS=4; // IN PROCESS OF STARTING
+}
+message Identifier {string uuid=1;IdentifierType type=2;string name=3;}
+message KVPair  {string key=1;string value=2;}
+
+message Empty {}
+message State  {
+    SERVICE_STATUS status=1;
+    repeated string  logs=2;
+}
+
+message Pools {repeated Identifier pool=1;}
+message Pipelines {repeated Identifier pipeline=1;}
+message Processors {repeated Identifier processor=1;}
+message Topics {repeated Identifier topic=1;}
+message DataSources {repeated Identifier datasource=1;}
+
+message Extract {repeated string data=1;}
+message DataSource {string datasource_driver=1;IdentifierType datasource_type=2;repeated KVPair datasource_configuration=3;}
+message Job {repeated string payload=1;}
+message Objects {repeated Identifier objects=1;}
+
+message TopicPipeline{Identifier topic=1;Identifier Pipeline=2;}
+
+service DataPipelineService {
+//  ------------------- DATA PIPELINE POOLS ----------------
+  rpc CreatePool(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/datapipeline/pool/create"; body: "*"};}
+  rpc DeletePool(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/delete"; body: "*"};}
+  rpc ListAllPools(Empty)                           returns(Pools)  {option (google.api.http) = {get: "/v1/datapipeline/pool/listall"};}
+
+//  ------------------- DATA SOURCES ----------------
+
+//  ------------------- PIPELINE ----------------
+
+//  ------------------- TOPIC ----------------
+
+//  ------------------- PROCESSOR ----------------
+
+// CHECK STATUS OF SERVICE HEALTH
+  rpc Status(Empty)                         returns (State)       {option (google.api.http) = {get: "/v1/champion_challenger/status"};}
+
+//SHUTDOWN SERVICE
+  rpc Shutdown(Empty)                       returns (Empty)       {option (google.api.http) = {get: "/v1/champion_challenger/shutdown"};}
+
+// START SERVICE
+  rpc Startup(Empty)                        returns (State)       {option (google.api.http) = {get: "/v1/champion_challenger/startup"};}
+}
