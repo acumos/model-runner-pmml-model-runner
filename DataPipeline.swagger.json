@@ -1,0 +1,211 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "DataPipeline.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/champion_challenger/shutdown": {
+      "get": {
+        "summary": "SHUTDOWN SERVICE",
+        "operationId": "Shutdown",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceEmpty"
+            }
+          }
+        },
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/champion_challenger/startup": {
+      "get": {
+        "summary": "START SERVICE",
+        "operationId": "Startup",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/champion_challenger/status": {
+      "get": {
+        "summary": "CHECK STATUS OF SERVICE HEALTH",
+        "operationId": "Status",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/datapipeline/pool/create": {
+      "post": {
+        "summary": "------------------- DATA PIPELINE POOLS ----------------",
+        "operationId": "CreatePool",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/datapipeline/pool/delete": {
+      "post": {
+        "operationId": "DeletePool",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/datapipeline/pool/listall": {
+      "get": {
+        "operationId": "ListAllPools",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServicePools"
+            }
+          }
+        },
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DataPipelineServiceEmpty": {
+      "type": "object"
+    },
+    "DataPipelineServiceIdentifier": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifierType"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DataPipelineServiceIdentifierType": {
+      "type": "string",
+      "enum": [
+        "READ_DATASOURCE",
+        "PUBLISHER_JOB",
+        "SUBSCRIBER_JOB",
+        "TRANSFORMER_JOB",
+        "PIPELINEPOOL",
+        "TOPIC",
+        "PROCESSOR",
+        "PIPELINE",
+        "DATA",
+        "WRITE_DATASOURCE",
+        "SINK_JOB"
+      ],
+      "default": "READ_DATASOURCE"
+    },
+    "DataPipelineServicePools": {
+      "type": "object",
+      "properties": {
+        "pool": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataPipelineServiceIdentifier"
+          }
+        }
+      }
+    },
+    "DataPipelineServiceSERVICE_STATUS": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "FAILED",
+        "EXCEPTION",
+        "INPROGRESS"
+      ],
+      "default": "ACTIVE"
+    },
+    "DataPipelineServiceState": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/DataPipelineServiceSERVICE_STATUS"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

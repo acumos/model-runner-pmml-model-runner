@@ -47,12 +47,33 @@ message Objects {repeated Identifier objects=1;}
 message TopicPipeline{Identifier topic=1;Identifier Pipeline=2;}
 
 service DataPipelineService {
+//  ------------------- DATA PIPELINE SERVICE ----------------
+
+// CHECK STATUS OF SERVICE HEALTH
+  rpc Status(Empty)                         returns (State)       {option (google.api.http) = {get: "/v1/datapipelineservice/status"};}
+//SHUTDOWN SERVICE
+  rpc Shutdown(Empty)                       returns (Empty)       {option (google.api.http) = {get: "/v1/datapipelineservice/shutdown"};}
+// START SERVICE
+  rpc Startup(Empty)                        returns (State)       {option (google.api.http) = {get: "/v1/datapipelineservice/startup"};}
+
 //  ------------------- DATA PIPELINE POOLS ----------------
+
   rpc CreatePool(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/datapipeline/pool/create"; body: "*"};}
-  rpc DeletePool(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/delete"; body: "*"};}
-  rpc ListAllPools(Empty)                           returns(Pools)  {option (google.api.http) = {get: "/v1/datapipeline/pool/listall"};}
+  rpc StartPool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/start"; body: "*"};}
+  rpc StopPool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/stop"; body: "*"};}};}
+  rpc PausePool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/pause"; body: "*"};}
+  rpc UnPausePool(Identifier)                       returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/unpause"; body: "*"};}
+  rpc ListAllPools(Empty)                           returns(Pools)  {option (google.api.http) = {get: "/v1/datapipeline/pool/list"};}
+  rpc ListObjectsInPool(Identifier)                 returns(Objects)  {option (google.api.http) = {get: "/v1/datapipeline/pool/objects/list"};}
+  rpc DeletePool(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/delete"; body: "*"
 
 //  ------------------- DATA SOURCES ----------------
+
+//Create A datapipeline Pool for a set of pipelines . Pipelines are always associated with a pool. A pool can have 0 or more pipelines
+  rpc CreatePool(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/datapipeline/pool/create"; body: "*"};}
+
+//Delete A Data Pipeline pool , To delete a pool, all pipelines in the pool must be deleted
+//GET /v1/pool/list
 
 //  ------------------- PIPELINE ----------------
 
@@ -60,12 +81,4 @@ service DataPipelineService {
 
 //  ------------------- PROCESSOR ----------------
 
-// CHECK STATUS OF SERVICE HEALTH
-  rpc Status(Empty)                         returns (State)       {option (google.api.http) = {get: "/v1/champion_challenger/status"};}
-
-//SHUTDOWN SERVICE
-  rpc Shutdown(Empty)                       returns (Empty)       {option (google.api.http) = {get: "/v1/champion_challenger/shutdown"};}
-
-// START SERVICE
-  rpc Startup(Empty)                        returns (State)       {option (google.api.http) = {get: "/v1/champion_challenger/startup"};}
 }

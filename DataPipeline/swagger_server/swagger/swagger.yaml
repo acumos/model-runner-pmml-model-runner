@@ -1,0 +1,168 @@
+---
+swagger: "2.0"
+info:
+  version: "version not set"
+  title: "DataPipeline.proto"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /v1/champion_challenger/shutdown:
+    get:
+      tags:
+      - "DataPipelineService"
+      summary: "SHUTDOWN SERVICE"
+      operationId: "shutdown"
+      parameters: []
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceEmpty"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/champion_challenger/startup:
+    get:
+      tags:
+      - "DataPipelineService"
+      summary: "START SERVICE"
+      operationId: "startup"
+      parameters: []
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/champion_challenger/status:
+    get:
+      tags:
+      - "DataPipelineService"
+      summary: "CHECK STATUS OF SERVICE HEALTH"
+      operationId: "status"
+      parameters: []
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/datapipeline/pool/create:
+    post:
+      tags:
+      - "DataPipelineService"
+      summary: "------------------- DATA PIPELINE POOLS ----------------"
+      operationId: "create_pool"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/datapipeline/pool/delete:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "delete_pool"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/datapipeline/pool/listall:
+    get:
+      tags:
+      - "DataPipelineService"
+      operationId: "list_all_pools"
+      parameters: []
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServicePools"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+definitions:
+  DataPipelineServiceEmpty:
+    type: "object"
+  DataPipelineServiceIdentifier:
+    type: "object"
+    properties:
+      uuid:
+        type: "string"
+      type:
+        $ref: "#/definitions/DataPipelineServiceIdentifierType"
+      name:
+        type: "string"
+    example:
+      name: "name"
+      type: {}
+      uuid: "uuid"
+  DataPipelineServiceIdentifierType:
+    type: "string"
+    enum:
+    - "READ_DATASOURCE"
+    - "PUBLISHER_JOB"
+    - "SUBSCRIBER_JOB"
+    - "TRANSFORMER_JOB"
+    - "PIPELINEPOOL"
+    - "TOPIC"
+    - "PROCESSOR"
+    - "PIPELINE"
+    - "DATA"
+    - "WRITE_DATASOURCE"
+    - "SINK_JOB"
+    default: "READ_DATASOURCE"
+  DataPipelineServicePools:
+    type: "object"
+    properties:
+      pool:
+        type: "array"
+        items:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+    example:
+      pool:
+      - name: "name"
+        type: {}
+        uuid: "uuid"
+      - name: "name"
+        type: {}
+        uuid: "uuid"
+  DataPipelineServiceSERVICE_STATUS:
+    type: "string"
+    enum:
+    - "ACTIVE"
+    - "INACTIVE"
+    - "FAILED"
+    - "EXCEPTION"
+    - "INPROGRESS"
+    default: "ACTIVE"
+  DataPipelineServiceState:
+    type: "object"
+    properties:
+      status:
+        $ref: "#/definitions/DataPipelineServiceSERVICE_STATUS"
+      logs:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      logs:
+      - "logs"
+      - "logs"
+      status: {}
