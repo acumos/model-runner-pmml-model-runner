@@ -7,6 +7,7 @@ from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.data_pipeline_service_identifier_type import DataPipelineServiceIdentifierType  # noqa: F401,E501
+from swagger_server.models.data_pipeline_service_kv_pairs import DataPipelineServiceKVPairs  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -16,7 +17,7 @@ class DataPipelineServiceIdentifier(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, uuid: str=None, type: DataPipelineServiceIdentifierType=None, name: str=None):  # noqa: E501
+    def __init__(self, uuid: str=None, type: DataPipelineServiceIdentifierType=None, name: str=None, metrics: DataPipelineServiceKVPairs=None):  # noqa: E501
         """DataPipelineServiceIdentifier - a model defined in Swagger
 
         :param uuid: The uuid of this DataPipelineServiceIdentifier.  # noqa: E501
@@ -25,22 +26,27 @@ class DataPipelineServiceIdentifier(Model):
         :type type: DataPipelineServiceIdentifierType
         :param name: The name of this DataPipelineServiceIdentifier.  # noqa: E501
         :type name: str
+        :param metrics: The metrics of this DataPipelineServiceIdentifier.  # noqa: E501
+        :type metrics: DataPipelineServiceKVPairs
         """
         self.swagger_types = {
             'uuid': str,
             'type': DataPipelineServiceIdentifierType,
-            'name': str
+            'name': str,
+            'metrics': DataPipelineServiceKVPairs
         }
 
         self.attribute_map = {
             'uuid': 'uuid',
             'type': 'type',
-            'name': 'name'
+            'name': 'name',
+            'metrics': 'metrics'
         }
 
         self._uuid = uuid
         self._type = type
         self._name = name
+        self._metrics = metrics
 
     @classmethod
     def from_dict(cls, dikt) -> 'DataPipelineServiceIdentifier':
@@ -115,3 +121,24 @@ class DataPipelineServiceIdentifier(Model):
         """
 
         self._name = name
+
+    @property
+    def metrics(self) -> DataPipelineServiceKVPairs:
+        """Gets the metrics of this DataPipelineServiceIdentifier.
+
+
+        :return: The metrics of this DataPipelineServiceIdentifier.
+        :rtype: DataPipelineServiceKVPairs
+        """
+        return self._metrics
+
+    @metrics.setter
+    def metrics(self, metrics: DataPipelineServiceKVPairs):
+        """Sets the metrics of this DataPipelineServiceIdentifier.
+
+
+        :param metrics: The metrics of this DataPipelineServiceIdentifier.
+        :type metrics: DataPipelineServiceKVPairs
+        """
+
+        self._metrics = metrics

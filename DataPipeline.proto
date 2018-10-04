@@ -24,15 +24,15 @@ enum SERVICE_STATUS {
         EXCEPTION=3; // GETTING EXCEPTION FROM DEPENDENCIES
         INPROGRESS=4; // IN PROCESS OF STARTING
 }
-message Identifier {string uuid=1;IdentifierType type=2;string name=3;}
 message KVPair  {string key=1;string value=2;}
-
+message KVPairs  {repeated KVPair kv=1;}
 message Empty {}
 message State  {
     SERVICE_STATUS status=1;
     repeated string  logs=2;
 }
 
+message Identifier {string uuid=1;IdentifierType type=2;string name=3;KVPairs metrics=4;}
 message Pools {repeated Identifier pool=1;}
 message Pipelines {repeated Identifier pipeline=1;}
 message Processors {repeated Identifier processor=1;}
@@ -44,40 +44,62 @@ message DataSource {string datasource_driver=1;IdentifierType datasource_type=2;
 message Job {repeated string payload=1;}
 message Objects {repeated Identifier objects=1;}
 
-message TopicPipeline{Identifier topic=1;Identifier Pipeline=2;}
-
+message TopicPipeline{Identifier topic=1;Identifier pipeline=2;}
+message DataSourcePool{Identifier datasource=1;Identifier pool=2;}
+message Topic{string name=1;KVPairs kvpairs=2;}
+message TopicDataSource{Identifier topic=1;Identifier datasource=2;}
 service DataPipelineService {
 //  ------------------- DATA PIPELINE SERVICE ----------------
 
 // CHECK STATUS OF SERVICE HEALTH
-  rpc Status(Empty)                         returns (State)       {option (google.api.http) = {get: "/v1/datapipelineservice/status"};}
+  rpc Status(Empty)                                 returns (State)       {option (google.api.http) = {get: "/v1/datapipelineservice/status"};}
 //SHUTDOWN SERVICE
-  rpc Shutdown(Empty)                       returns (Empty)       {option (google.api.http) = {get: "/v1/datapipelineservice/shutdown"};}
+  rpc Shutdown(Empty)                               returns (Empty)       {option (google.api.http) = {get: "/v1/datapipelineservice/shutdown"};}
 // START SERVICE
-  rpc Startup(Empty)                        returns (State)       {option (google.api.http) = {get: "/v1/datapipelineservice/startup"};}
+  rpc Startup(Empty)                                returns (State)       {option (google.api.http) = {get: "/v1/datapipelineservice/startup"};}
 
 //  ------------------- DATA PIPELINE POOLS ----------------
 
+//Create A datapipeline Pool for a set of pipelines . Pipelines are always associated with a pool. A pool can have 0 or more pipelines
   rpc CreatePool(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/datapipeline/pool/create"; body: "*"};}
-  rpc StartPool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/start"; body: "*"};}
-  rpc StopPool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/stop"; body: "*"};}};}
-  rpc PausePool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/pause"; body: "*"};}
-  rpc UnPausePool(Identifier)                       returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/unpause"; body: "*"};}
+  rpc StartPool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/{uuid}/pool/start"; body: "*"};}
+  rpc StopPool(Identifier)                          returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/{uuid}/pool/stop"; body: "*"};}
+  rpc PausePool(Identifier)                         returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/{uuid}/pool/pause"; body: "*"};}
+  rpc UnPausePool(Identifier)                       returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/{uuid}/pool/unpause"; body: "*"};}
   rpc ListAllPools(Empty)                           returns(Pools)  {option (google.api.http) = {get: "/v1/datapipeline/pool/list"};}
-  rpc ListObjectsInPool(Identifier)                 returns(Objects)  {option (google.api.http) = {get: "/v1/datapipeline/pool/objects/list"};}
-  rpc DeletePool(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/pool/delete"; body: "*"
+  rpc ListObjectsInPool(Identifier)                 returns(Objects)  {option (google.api.http) = {get: "/v1/datapipeline/{uuid}/pool/objects/list"};}
+//Delete A Data Pipeline pool , To delete a pool, all pipelines in the pool must be deleted
+  rpc DeletePool(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/datapipeline/{uuid}/pool/delete"; body: "*"};}
 
 //  ------------------- DATA SOURCES ----------------
 
-//Create A datapipeline Pool for a set of pipelines . Pipelines are always associated with a pool. A pool can have 0 or more pipelines
-  rpc CreatePool(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/datapipeline/pool/create"; body: "*"};}
+  rpc RegisterDataSource(DataSource)                returns(Identifier)  {option (google.api.http) = {post: "/v1/datasource/register"; body: "*"};}
+  rpc RegisterDataSourceToPool(DataSourcePool)      returns(Identifier)  {option (google.api.http) = {post: "/v1/datasource/{datasource.uuid}/pool/register"; body: "*"};}
+  rpc SampleDataSource(Identifier)                  returns(Extract)  {option (google.api.http) = {get: "/v1/datasource/{uuid}/sample"};}
 
-//Delete A Data Pipeline pool , To delete a pool, all pipelines in the pool must be deleted
-//GET /v1/pool/list
 
 //  ------------------- PIPELINE ----------------
 
+  rpc CreatePipeline(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/pipeline/create"; body: "*"};}
+  rpc DeletePipeline(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/delete"; body: "*"};}
+  rpc RunPipeline(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/run"; body: "*"};}
+  rpc PausePipeline(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/pause"; body: "*"};}
+  rpc UnPausePipeline(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/unpause"; body: "*"};}
+  rpc StopPipeline(Identifier)                        returns(State)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/stop"; body: "*"};}
+
+//  ------------------- PIPELINESNAPSHOT ----------------
+
+  rpc SnapshotPipeline(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/snapshot"; body: "*"};}
+  rpc RestorePipelineSnapshot(Identifier)                 returns(Identifier)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/restore"; body: "*"};}
+
+//  rpc RegisterDataSourceToPool(DataSourcePool)      returns(Identifier)  {option (google.api.http) = {post: "/v1/datasource/pool/register"; body: "*"};}
+//  rpc SampleDataSource(Identifier)                  returns(Extract)  {option (google.api.http) = {get: "/v1/datasource/register"};}
+
 //  ------------------- TOPIC ----------------
+  rpc CreateTopic(Topic)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/create"; body: "*"};}
+  rpc RegisterTopicForPipeline(TopicPipeline)   returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/${pipeline.uuid}/register"; body: "*"};}
+  rpc RegisterTopicForDataSource(TopicDataSource)    returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/${datasource.uuid}/register"; body: "*"};}
+  rpc SampleTopic(Identifier)                   returns(Extract)  {option (google.api.http) = {get: "/v1/topic/{uuid}/sample"};}
 
 //  ------------------- PROCESSOR ----------------
 
