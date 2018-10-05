@@ -5,16 +5,23 @@ package DataPipelineService;
 
 enum IdentifierType{
   READ_DATASOURCE=0;
-  PUBLISHER_JOB=1;
-  SUBSCRIBER_JOB=2;
-  TRANSFORMER_JOB=3;
+  PUBLISHER_PROCESSOR=1;
+  SUBSCRIBER_PROCESSOR=2;
+  TRANSFORMER_PROCESSOR=3;
   PIPELINEPOOL=4;
   TOPIC=5;
   PROCESSOR=6;
   PIPELINE=7;
   DATA=8;
   WRITE_DATASOURCE=9;
-  SINK_JOB=10;
+  SINK_PROCESSOR=10;
+}
+
+enum ProcessorType{
+  PUBLISH_PROCESSOR=0;
+  SUBSCRIBE_PROCESSOR=1;
+  TRANSFORM_PROCESSOR=2;
+  SINKER_PROCESSOR=3;
 }
 
 enum SERVICE_STATUS {
@@ -32,6 +39,11 @@ message State  {
     repeated string  logs=2;
 }
 
+enum PERSISTENCE_TYPE {
+        READONLY=0; // READY FOR USE
+        WRITEONLY=1; // Can be Made Active
+        READWRITE=2; // FAILED TO START SERVICE
+}
 message Identifier {string uuid=1;IdentifierType type=2;string name=3;KVPairs metrics=4;}
 message Pools {repeated Identifier pool=1;}
 message Pipelines {repeated Identifier pipeline=1;}
@@ -40,7 +52,7 @@ message Topics {repeated Identifier topic=1;}
 message DataSources {repeated Identifier datasource=1;}
 
 message Extract {repeated string data=1;}
-message DataSource {string datasource_driver=1;IdentifierType datasource_type=2;repeated KVPair datasource_configuration=3;}
+message DataSource {string datasource_driver=1;PERSISTENCE_TYPE persistence_type=2;repeated KVPair datasource_configuration=3;}
 message Job {repeated string payload=1;}
 message Objects {repeated Identifier objects=1;}
 
@@ -48,6 +60,12 @@ message TopicPipeline{Identifier topic=1;Identifier pipeline=2;}
 message DataSourcePool{Identifier datasource=1;Identifier pool=2;}
 message Topic{string name=1;KVPairs kvpairs=2;}
 message TopicDataSource{Identifier topic=1;Identifier datasource=2;}
+
+message ProcessorTopic {Identifier processor=1;Identifier topic=2;Identifier datasource=3;}
+
+message ProcessorPayload {ProcessorType type=1;string filename=2;bytes string_encoded_payload=3;}
+
+
 service DataPipelineService {
 //  ------------------- DATA PIPELINE SERVICE ----------------
 
@@ -92,15 +110,25 @@ service DataPipelineService {
   rpc SnapshotPipeline(Identifier)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/snapshot"; body: "*"};}
   rpc RestorePipelineSnapshot(Identifier)                 returns(Identifier)  {option (google.api.http) = {post: "/v1/pipeline/{uuid}/restore"; body: "*"};}
 
-//  rpc RegisterDataSourceToPool(DataSourcePool)      returns(Identifier)  {option (google.api.http) = {post: "/v1/datasource/pool/register"; body: "*"};}
-//  rpc SampleDataSource(Identifier)                  returns(Extract)  {option (google.api.http) = {get: "/v1/datasource/register"};}
 
 //  ------------------- TOPIC ----------------
   rpc CreateTopic(Topic)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/create"; body: "*"};}
-  rpc RegisterTopicForPipeline(TopicPipeline)   returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/${pipeline.uuid}/register"; body: "*"};}
-  rpc RegisterTopicForDataSource(TopicDataSource)    returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/${datasource.uuid}/register"; body: "*"};}
+  rpc RegisterTopicForPipeline(TopicPipeline)   returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register"; body: "*"};}
+  rpc RegisterTopicForDataSource(TopicDataSource)    returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register"; body: "*"};}
   rpc SampleTopic(Identifier)                   returns(Extract)  {option (google.api.http) = {get: "/v1/topic/{uuid}/sample"};}
 
 //  ------------------- PROCESSOR ----------------
+
+  rpc CreateProcessor(ProcessorPayload)         returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/create"; body: "*"};}
+  rpc ArchiveProcessor(Identifier)              returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{uuid}/archive"; body: "*"};}
+  rpc RunProcessor(Identifier)                  returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{uuid}/run"; body: "*"};}
+  rpc StopProcessor(Identifier)                 returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{uuid}/stop"; body: "*"};}
+  rpc PauseProcessor(Identifier)                returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{uuid}/pause"; body: "*"};}
+  rpc ReStartProcessor(Identifier)              returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{uuid}/restart"; body: "*"};}
+  rpc Associate_Processor_ToPublisherTopic(ProcessorTopic)              returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{processor.uuid}/topic"; body: "*"};}
+  rpc Associate_Processor_ToSubscriberTopic(ProcessorTopic)              returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{processor.uuid}/topic"; body: "*"};}
+  rpc Associate_Processor_ToSinkTopic(ProcessorTopic)              returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{processor.uuid}/topic"; body: "*"};}
+
+//  rpc SampleDataSource(Identifier)                  returns(Extract)  {option (google.api.http) = {get: "/v1/datasource/register"};}
 
 }

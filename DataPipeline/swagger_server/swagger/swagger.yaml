@@ -82,16 +82,16 @@ paths:
         default: "READ_DATASOURCE"
         enum:
         - "READ_DATASOURCE"
-        - "PUBLISHER_JOB"
-        - "SUBSCRIBER_JOB"
-        - "TRANSFORMER_JOB"
+        - "PUBLISHER_PROCESSOR"
+        - "SUBSCRIBER_PROCESSOR"
+        - "TRANSFORMER_PROCESSOR"
         - "PIPELINEPOOL"
         - "TOPIC"
         - "PROCESSOR"
         - "PIPELINE"
         - "DATA"
         - "WRITE_DATASOURCE"
-        - "SINK_JOB"
+        - "SINK_PROCESSOR"
       - name: "name"
         in: "query"
         required: false
@@ -280,16 +280,16 @@ paths:
         default: "READ_DATASOURCE"
         enum:
         - "READ_DATASOURCE"
-        - "PUBLISHER_JOB"
-        - "SUBSCRIBER_JOB"
-        - "TRANSFORMER_JOB"
+        - "PUBLISHER_PROCESSOR"
+        - "SUBSCRIBER_PROCESSOR"
+        - "TRANSFORMER_PROCESSOR"
         - "PIPELINEPOOL"
         - "TOPIC"
         - "PROCESSOR"
         - "PIPELINE"
         - "DATA"
         - "WRITE_DATASOURCE"
-        - "SINK_JOB"
+        - "SINK_PROCESSOR"
       - name: "name"
         in: "query"
         required: false
@@ -317,57 +317,6 @@ paths:
           schema:
             $ref: "#/definitions/DataPipelineServiceIdentifier"
       x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/pipeline/pause:
-    post:
-      tags:
-      - "DataPipelineService"
-      operationId: "pause_pipeline"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/DataPipelineServiceIdentifier"
-      responses:
-        200:
-          description: ""
-          schema:
-            $ref: "#/definitions/DataPipelineServiceState"
-      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/pipeline/run:
-    post:
-      tags:
-      - "DataPipelineService"
-      operationId: "run_pipeline"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/DataPipelineServiceIdentifier"
-      responses:
-        200:
-          description: ""
-          schema:
-            $ref: "#/definitions/DataPipelineServiceState"
-      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/pipeline/unpause:
-    post:
-      tags:
-      - "DataPipelineService"
-      operationId: "stop_pipeline"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/DataPipelineServiceIdentifier"
-      responses:
-        200:
-          description: ""
-          schema:
-            $ref: "#/definitions/DataPipelineServiceState"
-      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
   /v1/pipeline/{uuid}/delete:
     post:
       tags:
@@ -389,25 +338,399 @@ paths:
           schema:
             $ref: "#/definitions/DataPipelineServiceState"
       x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/pipeline/{uuid}/pause:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "pause_pipeline"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/pipeline/{uuid}/restore:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "restore_pipeline_snapshot"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/pipeline/{uuid}/run:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "run_pipeline"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/pipeline/{uuid}/snapshot:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "snapshot_pipeline"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/pipeline/{uuid}/stop:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "stop_pipeline"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/pipeline/{uuid}/unpause:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "un_pause_pipeline"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceState"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/create:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "create_processor"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceProcessorPayload"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/{processor.uuid}/topic:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "associate_processor_to_sink_topic"
+      parameters:
+      - name: "processor_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceProcessorTopic"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/{uuid}/archive:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "archive_processor"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/{uuid}/pause:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "pause_processor"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/{uuid}/restart:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "re_start_processor"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/{uuid}/run:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "run_processor"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/processor/{uuid}/stop:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "stop_processor"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdentifier"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/topic/create:
+    post:
+      tags:
+      - "DataPipelineService"
+      summary: "------------------- TOPIC ----------------"
+      operationId: "create_topic"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceTopic"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "register_topic_for_data_source"
+      parameters:
+      - name: "topic_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "datasource_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceTopicDataSource"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "register_topic_for_pipeline"
+      parameters:
+      - name: "topic_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pipeline_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceTopicPipeline"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/topic/{uuid}/sample:
+    get:
+      tags:
+      - "DataPipelineService"
+      operationId: "sample_topic"
+      parameters:
+      - name: "uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "type"
+        in: "query"
+        required: false
+        type: "string"
+        default: "READ_DATASOURCE"
+        enum:
+        - "READ_DATASOURCE"
+        - "PUBLISHER_PROCESSOR"
+        - "SUBSCRIBER_PROCESSOR"
+        - "TRANSFORMER_PROCESSOR"
+        - "PIPELINEPOOL"
+        - "TOPIC"
+        - "PROCESSOR"
+        - "PIPELINE"
+        - "DATA"
+        - "WRITE_DATASOURCE"
+        - "SINK_PROCESSOR"
+      - name: "name"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceExtract"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
 definitions:
   DataPipelineServiceDataSource:
     type: "object"
     properties:
       datasource_driver:
         type: "string"
-      datasource_type:
-        $ref: "#/definitions/DataPipelineServiceIdentifierType"
+      persistence_type:
+        $ref: "#/definitions/DataPipelineServicePERSISTENCE_TYPE"
       datasource_configuration:
         type: "array"
         items:
           $ref: "#/definitions/DataPipelineServiceKVPair"
     example:
-      datasource_type: {}
       datasource_configuration:
       - value: "value"
         key: "key"
       - value: "value"
         key: "key"
+      persistence_type: {}
       datasource_driver: "datasource_driver"
   DataPipelineServiceDataSourcePool:
     type: "object"
@@ -475,16 +798,16 @@ definitions:
     type: "string"
     enum:
     - "READ_DATASOURCE"
-    - "PUBLISHER_JOB"
-    - "SUBSCRIBER_JOB"
-    - "TRANSFORMER_JOB"
+    - "PUBLISHER_PROCESSOR"
+    - "SUBSCRIBER_PROCESSOR"
+    - "TRANSFORMER_PROCESSOR"
     - "PIPELINEPOOL"
     - "TOPIC"
     - "PROCESSOR"
     - "PIPELINE"
     - "DATA"
     - "WRITE_DATASOURCE"
-    - "SINK_JOB"
+    - "SINK_PROCESSOR"
     default: "READ_DATASOURCE"
   DataPipelineServiceKVPair:
     type: "object"
@@ -536,6 +859,13 @@ definitions:
             key: "key"
         type: {}
         uuid: "uuid"
+  DataPipelineServicePERSISTENCE_TYPE:
+    type: "string"
+    enum:
+    - "READONLY"
+    - "WRITEONLY"
+    - "READWRITE"
+    default: "READONLY"
   DataPipelineServicePools:
     type: "object"
     properties:
@@ -563,6 +893,71 @@ definitions:
             key: "key"
         type: {}
         uuid: "uuid"
+  DataPipelineServiceProcessorPayload:
+    type: "object"
+    properties:
+      type:
+        $ref: "#/definitions/DataPipelineServiceProcessorType"
+      filename:
+        type: "string"
+      string_encoded_payload:
+        type: "string"
+        format: "byte"
+        pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+        x-regex: "^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"
+        x-modifiers: []
+    example:
+      filename: "filename"
+      string_encoded_payload: "string_encoded_payload"
+      type: {}
+  DataPipelineServiceProcessorTopic:
+    type: "object"
+    properties:
+      processor:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+      topic:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+      datasource:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+    example:
+      datasource:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+      topic:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+      processor:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+  DataPipelineServiceProcessorType:
+    type: "string"
+    enum:
+    - "PUBLISH_PROCESSOR"
+    - "SUBSCRIBE_PROCESSOR"
+    - "TRANSFORM_PROCESSOR"
+    - "SINKER_PROCESSOR"
+    default: "PUBLISH_PROCESSOR"
   DataPipelineServiceSERVICE_STATUS:
     type: "string"
     enum:
@@ -586,3 +981,74 @@ definitions:
       - "logs"
       - "logs"
       status: {}
+  DataPipelineServiceTopic:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      kvpairs:
+        $ref: "#/definitions/DataPipelineServiceKVPairs"
+    example:
+      kvpairs:
+        kv:
+        - value: "value"
+          key: "key"
+        - value: "value"
+          key: "key"
+      name: "name"
+  DataPipelineServiceTopicDataSource:
+    type: "object"
+    properties:
+      topic:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+      datasource:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+    example:
+      datasource:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+      topic:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+  DataPipelineServiceTopicPipeline:
+    type: "object"
+    properties:
+      topic:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+      pipeline:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+    example:
+      pipeline:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+      topic:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"

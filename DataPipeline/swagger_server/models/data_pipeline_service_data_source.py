@@ -6,8 +6,8 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-from swagger_server.models.data_pipeline_service_identifier_type import DataPipelineServiceIdentifierType  # noqa: F401,E501
 from swagger_server.models.data_pipeline_service_kv_pair import DataPipelineServiceKVPair  # noqa: F401,E501
+from swagger_server.models.data_pipeline_service_persistencetype import DataPipelineServicePERSISTENCETYPE  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -17,30 +17,30 @@ class DataPipelineServiceDataSource(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, datasource_driver: str=None, datasource_type: DataPipelineServiceIdentifierType=None, datasource_configuration: List[DataPipelineServiceKVPair]=None):  # noqa: E501
+    def __init__(self, datasource_driver: str=None, persistence_type: DataPipelineServicePERSISTENCETYPE=None, datasource_configuration: List[DataPipelineServiceKVPair]=None):  # noqa: E501
         """DataPipelineServiceDataSource - a model defined in Swagger
 
         :param datasource_driver: The datasource_driver of this DataPipelineServiceDataSource.  # noqa: E501
         :type datasource_driver: str
-        :param datasource_type: The datasource_type of this DataPipelineServiceDataSource.  # noqa: E501
-        :type datasource_type: DataPipelineServiceIdentifierType
+        :param persistence_type: The persistence_type of this DataPipelineServiceDataSource.  # noqa: E501
+        :type persistence_type: DataPipelineServicePERSISTENCETYPE
         :param datasource_configuration: The datasource_configuration of this DataPipelineServiceDataSource.  # noqa: E501
         :type datasource_configuration: List[DataPipelineServiceKVPair]
         """
         self.swagger_types = {
             'datasource_driver': str,
-            'datasource_type': DataPipelineServiceIdentifierType,
+            'persistence_type': DataPipelineServicePERSISTENCETYPE,
             'datasource_configuration': List[DataPipelineServiceKVPair]
         }
 
         self.attribute_map = {
             'datasource_driver': 'datasource_driver',
-            'datasource_type': 'datasource_type',
+            'persistence_type': 'persistence_type',
             'datasource_configuration': 'datasource_configuration'
         }
 
         self._datasource_driver = datasource_driver
-        self._datasource_type = datasource_type
+        self._persistence_type = persistence_type
         self._datasource_configuration = datasource_configuration
 
     @classmethod
@@ -76,25 +76,25 @@ class DataPipelineServiceDataSource(Model):
         self._datasource_driver = datasource_driver
 
     @property
-    def datasource_type(self) -> DataPipelineServiceIdentifierType:
-        """Gets the datasource_type of this DataPipelineServiceDataSource.
+    def persistence_type(self) -> DataPipelineServicePERSISTENCETYPE:
+        """Gets the persistence_type of this DataPipelineServiceDataSource.
 
 
-        :return: The datasource_type of this DataPipelineServiceDataSource.
-        :rtype: DataPipelineServiceIdentifierType
+        :return: The persistence_type of this DataPipelineServiceDataSource.
+        :rtype: DataPipelineServicePERSISTENCETYPE
         """
-        return self._datasource_type
+        return self._persistence_type
 
-    @datasource_type.setter
-    def datasource_type(self, datasource_type: DataPipelineServiceIdentifierType):
-        """Sets the datasource_type of this DataPipelineServiceDataSource.
+    @persistence_type.setter
+    def persistence_type(self, persistence_type: DataPipelineServicePERSISTENCETYPE):
+        """Sets the persistence_type of this DataPipelineServiceDataSource.
 
 
-        :param datasource_type: The datasource_type of this DataPipelineServiceDataSource.
-        :type datasource_type: DataPipelineServiceIdentifierType
+        :param persistence_type: The persistence_type of this DataPipelineServiceDataSource.
+        :type persistence_type: DataPipelineServicePERSISTENCETYPE
         """
 
-        self._datasource_type = datasource_type
+        self._persistence_type = persistence_type
 
     @property
     def datasource_configuration(self) -> List[DataPipelineServiceKVPair]:

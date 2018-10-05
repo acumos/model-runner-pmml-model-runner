@@ -116,16 +116,16 @@
             "type": "string",
             "enum": [
               "READ_DATASOURCE",
-              "PUBLISHER_JOB",
-              "SUBSCRIBER_JOB",
-              "TRANSFORMER_JOB",
+              "PUBLISHER_PROCESSOR",
+              "SUBSCRIBER_PROCESSOR",
+              "TRANSFORMER_PROCESSOR",
               "PIPELINEPOOL",
               "TOPIC",
               "PROCESSOR",
               "PIPELINE",
               "DATA",
               "WRITE_DATASOURCE",
-              "SINK_JOB"
+              "SINK_PROCESSOR"
             ],
             "default": "READ_DATASOURCE"
           },
@@ -403,16 +403,16 @@
             "type": "string",
             "enum": [
               "READ_DATASOURCE",
-              "PUBLISHER_JOB",
-              "SUBSCRIBER_JOB",
-              "TRANSFORMER_JOB",
+              "PUBLISHER_PROCESSOR",
+              "SUBSCRIBER_PROCESSOR",
+              "TRANSFORMER_PROCESSOR",
               "PIPELINEPOOL",
               "TOPIC",
               "PROCESSOR",
               "PIPELINE",
               "DATA",
               "WRITE_DATASOURCE",
-              "SINK_JOB"
+              "SINK_PROCESSOR"
             ],
             "default": "READ_DATASOURCE"
           },
@@ -436,84 +436,6 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/DataPipelineServiceIdentifier"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceIdentifier"
-            }
-          }
-        ],
-        "tags": [
-          "DataPipelineService"
-        ]
-      }
-    },
-    "/v1/pipeline/pause": {
-      "post": {
-        "operationId": "PausePipeline",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceState"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceIdentifier"
-            }
-          }
-        ],
-        "tags": [
-          "DataPipelineService"
-        ]
-      }
-    },
-    "/v1/pipeline/run": {
-      "post": {
-        "operationId": "RunPipeline",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceState"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceIdentifier"
-            }
-          }
-        ],
-        "tags": [
-          "DataPipelineService"
-        ]
-      }
-    },
-    "/v1/pipeline/unpause": {
-      "post": {
-        "operationId": "StopPipeline",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceState"
             }
           }
         },
@@ -563,6 +485,569 @@
           "DataPipelineService"
         ]
       }
+    },
+    "/v1/pipeline/{uuid}/pause": {
+      "post": {
+        "operationId": "PausePipeline",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/pipeline/{uuid}/restore": {
+      "post": {
+        "operationId": "RestorePipelineSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/pipeline/{uuid}/run": {
+      "post": {
+        "operationId": "RunPipeline",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/pipeline/{uuid}/snapshot": {
+      "post": {
+        "operationId": "SnapshotPipeline",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/pipeline/{uuid}/stop": {
+      "post": {
+        "operationId": "StopPipeline",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/pipeline/{uuid}/unpause": {
+      "post": {
+        "operationId": "UnPausePipeline",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceState"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/create": {
+      "post": {
+        "operationId": "CreateProcessor",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceProcessorPayload"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/{processor.uuid}/topic": {
+      "post": {
+        "operationId": "Associate_Processor_ToSinkTopic",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "processor.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceProcessorTopic"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/{uuid}/archive": {
+      "post": {
+        "operationId": "ArchiveProcessor",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/{uuid}/pause": {
+      "post": {
+        "operationId": "PauseProcessor",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/{uuid}/restart": {
+      "post": {
+        "operationId": "ReStartProcessor",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/{uuid}/run": {
+      "post": {
+        "operationId": "RunProcessor",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/processor/{uuid}/stop": {
+      "post": {
+        "operationId": "StopProcessor",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/topic/create": {
+      "post": {
+        "summary": "------------------- TOPIC ----------------",
+        "operationId": "CreateTopic",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceTopic"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register": {
+      "post": {
+        "operationId": "RegisterTopicForDataSource",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "datasource.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceTopicDataSource"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register": {
+      "post": {
+        "operationId": "RegisterTopicForPipeline",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pipeline.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceTopicPipeline"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
+    "/v1/topic/{uuid}/sample": {
+      "get": {
+        "operationId": "SampleTopic",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceExtract"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "READ_DATASOURCE",
+              "PUBLISHER_PROCESSOR",
+              "SUBSCRIBER_PROCESSOR",
+              "TRANSFORMER_PROCESSOR",
+              "PIPELINEPOOL",
+              "TOPIC",
+              "PROCESSOR",
+              "PIPELINE",
+              "DATA",
+              "WRITE_DATASOURCE",
+              "SINK_PROCESSOR"
+            ],
+            "default": "READ_DATASOURCE"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -572,8 +1057,8 @@
         "datasource_driver": {
           "type": "string"
         },
-        "datasource_type": {
-          "$ref": "#/definitions/DataPipelineServiceIdentifierType"
+        "persistence_type": {
+          "$ref": "#/definitions/DataPipelineServicePERSISTENCE_TYPE"
         },
         "datasource_configuration": {
           "type": "array",
@@ -629,16 +1114,16 @@
       "type": "string",
       "enum": [
         "READ_DATASOURCE",
-        "PUBLISHER_JOB",
-        "SUBSCRIBER_JOB",
-        "TRANSFORMER_JOB",
+        "PUBLISHER_PROCESSOR",
+        "SUBSCRIBER_PROCESSOR",
+        "TRANSFORMER_PROCESSOR",
         "PIPELINEPOOL",
         "TOPIC",
         "PROCESSOR",
         "PIPELINE",
         "DATA",
         "WRITE_DATASOURCE",
-        "SINK_JOB"
+        "SINK_PROCESSOR"
       ],
       "default": "READ_DATASOURCE"
     },
@@ -675,6 +1160,15 @@
         }
       }
     },
+    "DataPipelineServicePERSISTENCE_TYPE": {
+      "type": "string",
+      "enum": [
+        "READONLY",
+        "WRITEONLY",
+        "READWRITE"
+      ],
+      "default": "READONLY"
+    },
     "DataPipelineServicePools": {
       "type": "object",
       "properties": {
@@ -685,6 +1179,45 @@
           }
         }
       }
+    },
+    "DataPipelineServiceProcessorPayload": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/DataPipelineServiceProcessorType"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "string_encoded_payload": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "DataPipelineServiceProcessorTopic": {
+      "type": "object",
+      "properties": {
+        "processor": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        },
+        "topic": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        },
+        "datasource": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        }
+      }
+    },
+    "DataPipelineServiceProcessorType": {
+      "type": "string",
+      "enum": [
+        "PUBLISH_PROCESSOR",
+        "SUBSCRIBE_PROCESSOR",
+        "TRANSFORM_PROCESSOR",
+        "SINKER_PROCESSOR"
+      ],
+      "default": "PUBLISH_PROCESSOR"
     },
     "DataPipelineServiceSERVICE_STATUS": {
       "type": "string",
@@ -708,6 +1241,39 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "DataPipelineServiceTopic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kvpairs": {
+          "$ref": "#/definitions/DataPipelineServiceKVPairs"
+        }
+      }
+    },
+    "DataPipelineServiceTopicDataSource": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        },
+        "datasource": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        }
+      }
+    },
+    "DataPipelineServiceTopicPipeline": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        },
+        "pipeline": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
         }
       }
     }
