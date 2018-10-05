@@ -1,8 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  version: "version not set"
-  title: "DataPipeline.proto"
+  version: "0.1"
+  title: "Data Pipeline Service"
 schemes:
 - "http"
 - "https"
@@ -11,6 +11,64 @@ consumes:
 produces:
 - "application/json"
 paths:
+  /v1/Identifier/{id.uuid}/metrics:
+    get:
+      tags:
+      - "DataPipelineService"
+      operationId: "retrieve_metrics"
+      parameters:
+      - name: "id_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "id_type"
+        in: "query"
+        required: false
+        type: "string"
+        default: "READ_DATASOURCE"
+        enum:
+        - "READ_DATASOURCE"
+        - "PUBLISHER_PROCESSOR"
+        - "SUBSCRIBER_PROCESSOR"
+        - "TRANSFORMER_PROCESSOR"
+        - "PIPELINEPOOL"
+        - "TOPIC"
+        - "PROCESSOR"
+        - "PIPELINE"
+        - "DATA"
+        - "WRITE_DATASOURCE"
+        - "SINK_PROCESSOR"
+      - name: "id_name"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+    post:
+      tags:
+      - "DataPipelineService"
+      summary: "-------------- Metrics ---------------"
+      operationId: "update_metrics"
+      parameters:
+      - name: "id_uuid"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceIdMetrics"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
   /v1/datapipeline/pool/create:
     post:
       tags:
@@ -611,7 +669,6 @@ paths:
     post:
       tags:
       - "DataPipelineService"
-      summary: "------------------- TOPIC ----------------"
       operationId: "create_topic"
       parameters:
       - in: "body"
@@ -773,6 +830,30 @@ definitions:
       data:
       - "data"
       - "data"
+  DataPipelineServiceIdMetrics:
+    type: "object"
+    properties:
+      id:
+        $ref: "#/definitions/DataPipelineServiceIdentifier"
+      metrics:
+        $ref: "#/definitions/DataPipelineServiceKVPairs"
+    example:
+      id:
+        name: "name"
+        metrics:
+          kv:
+          - value: "value"
+            key: "key"
+          - value: "value"
+            key: "key"
+        type: {}
+        uuid: "uuid"
+      metrics:
+        kv:
+        - value: "value"
+          key: "key"
+        - value: "value"
+          key: "key"
   DataPipelineServiceIdentifier:
     type: "object"
     properties:

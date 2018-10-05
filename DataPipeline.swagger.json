@@ -15,6 +15,87 @@
     "application/json"
   ],
   "paths": {
+    "/v1/Identifier/{id.uuid}/metrics": {
+      "get": {
+        "operationId": "RetrieveMetrics",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "READ_DATASOURCE",
+              "PUBLISHER_PROCESSOR",
+              "SUBSCRIBER_PROCESSOR",
+              "TRANSFORMER_PROCESSOR",
+              "PIPELINEPOOL",
+              "TOPIC",
+              "PROCESSOR",
+              "PIPELINE",
+              "DATA",
+              "WRITE_DATASOURCE",
+              "SINK_PROCESSOR"
+            ],
+            "default": "READ_DATASOURCE"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      },
+      "post": {
+        "summary": "-------------- Metrics ---------------",
+        "operationId": "UpdateMetrics",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdMetrics"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
     "/v1/datapipeline/pool/create": {
       "post": {
         "summary": "Create A datapipeline Pool for a set of pipelines . Pipelines are always associated with a pool. A pool can have 0 or more pipelines",
@@ -898,7 +979,6 @@
     },
     "/v1/topic/create": {
       "post": {
-        "summary": "------------------- TOPIC ----------------",
         "operationId": "CreateTopic",
         "responses": {
           "200": {
@@ -1090,6 +1170,17 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "DataPipelineServiceIdMetrics": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/DataPipelineServiceIdentifier"
+        },
+        "metrics": {
+          "$ref": "#/definitions/DataPipelineServiceKVPairs"
         }
       }
     },

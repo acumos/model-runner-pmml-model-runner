@@ -9,6 +9,7 @@ from swagger_server.models.data_pipeline_service_data_source import DataPipeline
 from swagger_server.models.data_pipeline_service_data_source_pool import DataPipelineServiceDataSourcePool  # noqa: E501
 from swagger_server.models.data_pipeline_service_empty import DataPipelineServiceEmpty  # noqa: E501
 from swagger_server.models.data_pipeline_service_extract import DataPipelineServiceExtract  # noqa: E501
+from swagger_server.models.data_pipeline_service_id_metrics import DataPipelineServiceIdMetrics  # noqa: E501
 from swagger_server.models.data_pipeline_service_identifier import DataPipelineServiceIdentifier  # noqa: E501
 from swagger_server.models.data_pipeline_service_objects import DataPipelineServiceObjects  # noqa: E501
 from swagger_server.models.data_pipeline_service_pools import DataPipelineServicePools  # noqa: E501
@@ -97,7 +98,7 @@ class TestDataPipelineServiceController(BaseTestCase):
     def test_create_topic(self):
         """Test case for create_topic
 
-        ------------------- TOPIC ----------------
+        
         """
         body = DataPipelineServiceTopic()
         response = self.client.open(
@@ -289,6 +290,21 @@ class TestDataPipelineServiceController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    def test_retrieve_metrics(self):
+        """Test case for retrieve_metrics
+
+        
+        """
+        query_string = [('id_type', 'READ_DATASOURCE'),
+                        ('id_name', 'id_name_example')]
+        response = self.client.open(
+            '/v1/Identifier/{id.uuid}/metrics'.format(id_uuid='id_uuid_example'),
+            method='GET',
+            content_type='application/json',
+            query_string=query_string)
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
     def test_run_pipeline(self):
         """Test case for run_pipeline
 
@@ -475,6 +491,20 @@ class TestDataPipelineServiceController(BaseTestCase):
         body = DataPipelineServiceIdentifier()
         response = self.client.open(
             '/v1/datapipeline/{uuid}/pool/unpause'.format(uuid='uuid_example'),
+            method='POST',
+            data=json.dumps(body),
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_update_metrics(self):
+        """Test case for update_metrics
+
+        -------------- Metrics ---------------
+        """
+        body = DataPipelineServiceIdMetrics()
+        response = self.client.open(
+            '/v1/Identifier/{id.uuid}/metrics'.format(id_uuid='id_uuid_example'),
             method='POST',
             data=json.dumps(body),
             content_type='application/json')

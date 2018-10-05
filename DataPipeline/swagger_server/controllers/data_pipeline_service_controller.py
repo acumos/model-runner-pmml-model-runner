@@ -5,6 +5,7 @@ from swagger_server.models.data_pipeline_service_data_source import DataPipeline
 from swagger_server.models.data_pipeline_service_data_source_pool import DataPipelineServiceDataSourcePool  # noqa: E501
 from swagger_server.models.data_pipeline_service_empty import DataPipelineServiceEmpty  # noqa: E501
 from swagger_server.models.data_pipeline_service_extract import DataPipelineServiceExtract  # noqa: E501
+from swagger_server.models.data_pipeline_service_id_metrics import DataPipelineServiceIdMetrics  # noqa: E501
 from swagger_server.models.data_pipeline_service_identifier import DataPipelineServiceIdentifier  # noqa: E501
 from swagger_server.models.data_pipeline_service_objects import DataPipelineServiceObjects  # noqa: E501
 from swagger_server.models.data_pipeline_service_pools import DataPipelineServicePools  # noqa: E501
@@ -97,7 +98,7 @@ def create_processor(body):  # noqa: E501
 
 
 def create_topic(body):  # noqa: E501
-    """------------------- TOPIC ----------------
+    """create_topic
 
      # noqa: E501
 
@@ -328,6 +329,23 @@ def restore_pipeline_snapshot(uuid, body):  # noqa: E501
     return 'do some magic!'
 
 
+def retrieve_metrics(id_uuid, id_type=None, id_name=None):  # noqa: E501
+    """retrieve_metrics
+
+     # noqa: E501
+
+    :param id_uuid: 
+    :type id_uuid: str
+    :param id_type: 
+    :type id_type: str
+    :param id_name: 
+    :type id_name: str
+
+    :rtype: DataPipelineServiceIdentifier
+    """
+    return 'do some magic!'
+
+
 def run_pipeline(uuid, body):  # noqa: E501
     """run_pipeline
 
@@ -545,4 +563,21 @@ def un_pause_pool(uuid, body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = DataPipelineServiceIdentifier.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def update_metrics(id_uuid, body):  # noqa: E501
+    """-------------- Metrics ---------------
+
+     # noqa: E501
+
+    :param id_uuid: 
+    :type id_uuid: str
+    :param body: 
+    :type body: dict | bytes
+
+    :rtype: DataPipelineServiceIdentifier
+    """
+    if connexion.request.is_json:
+        body = DataPipelineServiceIdMetrics.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

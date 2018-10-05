@@ -64,7 +64,7 @@ message TopicDataSource{Identifier topic=1;Identifier datasource=2;}
 message ProcessorTopic {Identifier processor=1;Identifier topic=2;Identifier datasource=3;}
 
 message ProcessorPayload {ProcessorType type=1;string filename=2;bytes string_encoded_payload=3;}
-
+message IdMetrics{Identifier id=1; KVPairs metrics=2;}
 
 service DataPipelineService {
 //  ------------------- DATA PIPELINE SERVICE ----------------
@@ -112,6 +112,7 @@ service DataPipelineService {
 
 
 //  ------------------- TOPIC ----------------
+
   rpc CreateTopic(Topic)                        returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/create"; body: "*"};}
   rpc RegisterTopicForPipeline(TopicPipeline)   returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register"; body: "*"};}
   rpc RegisterTopicForDataSource(TopicDataSource)    returns(Identifier)  {option (google.api.http) = {post: "/v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register"; body: "*"};}
@@ -130,5 +131,9 @@ service DataPipelineService {
   rpc Associate_Processor_ToSinkTopic(ProcessorTopic)              returns(Identifier)  {option (google.api.http) = {post: "/v1/processor/{processor.uuid}/topic"; body: "*"};}
 
 //  rpc SampleDataSource(Identifier)                  returns(Extract)  {option (google.api.http) = {get: "/v1/datasource/register"};}
+
+//  -------------- Metrics ---------------
+  rpc UpdateMetrics(IdMetrics)         returns(Identifier)  {option (google.api.http) = {post: "/v1/Identifier/{id.uuid}/metrics"; body: "*"};}
+  rpc RetrieveMetrics(IdMetrics)         returns(Identifier)  {option (google.api.http) = {get: "/v1/Identifier/{id.uuid}/metrics"};}
 
 }
