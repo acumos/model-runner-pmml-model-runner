@@ -18,7 +18,6 @@ from swagger_server.models.data_pipeline_service_processor_topic import DataPipe
 from swagger_server.models.data_pipeline_service_state import DataPipelineServiceState  # noqa: E501
 from swagger_server.models.data_pipeline_service_topic import DataPipelineServiceTopic  # noqa: E501
 from swagger_server.models.data_pipeline_service_topic_data_source import DataPipelineServiceTopicDataSource  # noqa: E501
-from swagger_server.models.data_pipeline_service_topic_pipeline import DataPipelineServiceTopicPipeline  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -46,7 +45,7 @@ class TestDataPipelineServiceController(BaseTestCase):
         """
         body = DataPipelineServiceProcessorTopic()
         response = self.client.open(
-            '/v1/processor/{processor.uuid}/topic'.format(processor_uuid='processor_uuid_example'),
+            '/v1/processor/topic',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -241,7 +240,7 @@ class TestDataPipelineServiceController(BaseTestCase):
         """
         body = DataPipelineServiceDataSourcePool()
         response = self.client.open(
-            '/v1/datasource/{datasource.uuid}/pool/register'.format(datasource_uuid='datasource_uuid_example'),
+            '/v1/datasource/pool/register',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -255,21 +254,7 @@ class TestDataPipelineServiceController(BaseTestCase):
         """
         body = DataPipelineServiceTopicDataSource()
         response = self.client.open(
-            '/v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register'.format(topic_uuid='topic_uuid_example', datasource_uuid='datasource_uuid_example'),
-            method='POST',
-            data=json.dumps(body),
-            content_type='application/json')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_register_topic_for_pipeline(self):
-        """Test case for register_topic_for_pipeline
-
-        
-        """
-        body = DataPipelineServiceTopicPipeline()
-        response = self.client.open(
-            '/v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register'.format(topic_uuid='topic_uuid_example', pipeline_uuid='pipeline_uuid_example'),
+            '/v1/topic/datasource/register',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -295,10 +280,11 @@ class TestDataPipelineServiceController(BaseTestCase):
 
         
         """
-        query_string = [('id_type', 'READ_DATASOURCE'),
-                        ('id_name', 'id_name_example')]
+        query_string = [('ident_uuid', 'ident_uuid_example'),
+                        ('ident_type', 'READ_DATASOURCE'),
+                        ('ident_name', 'ident_name_example')]
         response = self.client.open(
-            '/v1/Identifier/{id.uuid}/metrics'.format(id_uuid='id_uuid_example'),
+            '/v1/Identifier/metrics',
             method='GET',
             content_type='application/json',
             query_string=query_string)
@@ -504,7 +490,7 @@ class TestDataPipelineServiceController(BaseTestCase):
         """
         body = DataPipelineServiceIdMetrics()
         response = self.client.open(
-            '/v1/Identifier/{id.uuid}/metrics'.format(id_uuid='id_uuid_example'),
+            '/v1/Identifier/metrics',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')

@@ -6,9 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-from swagger_server.models.byte_array import ByteArray  # noqa: F401,E501
 from swagger_server.models.data_pipeline_service_processor_type import DataPipelineServiceProcessorType  # noqa: F401,E501
-import re  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -18,7 +16,7 @@ class DataPipelineServiceProcessorPayload(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: DataPipelineServiceProcessorType=None, filename: str=None, string_encoded_payload: ByteArray=None):  # noqa: E501
+    def __init__(self, type: DataPipelineServiceProcessorType=None, filename: str=None, string_encoded_payload: List[str]=None):  # noqa: E501
         """DataPipelineServiceProcessorPayload - a model defined in Swagger
 
         :param type: The type of this DataPipelineServiceProcessorPayload.  # noqa: E501
@@ -26,12 +24,12 @@ class DataPipelineServiceProcessorPayload(Model):
         :param filename: The filename of this DataPipelineServiceProcessorPayload.  # noqa: E501
         :type filename: str
         :param string_encoded_payload: The string_encoded_payload of this DataPipelineServiceProcessorPayload.  # noqa: E501
-        :type string_encoded_payload: ByteArray
+        :type string_encoded_payload: List[str]
         """
         self.swagger_types = {
             'type': DataPipelineServiceProcessorType,
             'filename': str,
-            'string_encoded_payload': ByteArray
+            'string_encoded_payload': List[str]
         }
 
         self.attribute_map = {
@@ -98,24 +96,22 @@ class DataPipelineServiceProcessorPayload(Model):
         self._filename = filename
 
     @property
-    def string_encoded_payload(self) -> ByteArray:
+    def string_encoded_payload(self) -> List[str]:
         """Gets the string_encoded_payload of this DataPipelineServiceProcessorPayload.
 
 
         :return: The string_encoded_payload of this DataPipelineServiceProcessorPayload.
-        :rtype: ByteArray
+        :rtype: List[str]
         """
         return self._string_encoded_payload
 
     @string_encoded_payload.setter
-    def string_encoded_payload(self, string_encoded_payload: ByteArray):
+    def string_encoded_payload(self, string_encoded_payload: List[str]):
         """Sets the string_encoded_payload of this DataPipelineServiceProcessorPayload.
 
 
         :param string_encoded_payload: The string_encoded_payload of this DataPipelineServiceProcessorPayload.
-        :type string_encoded_payload: ByteArray
+        :type string_encoded_payload: List[str]
         """
-        if string_encoded_payload is not None and not re.search('^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$', string_encoded_payload):  # noqa: E501
-            raise ValueError("Invalid value for `string_encoded_payload`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/`")  # noqa: E501
 
         self._string_encoded_payload = string_encoded_payload

@@ -16,26 +16,26 @@ class DataPipelineServiceTopicDataSource(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, topic: DataPipelineServiceIdentifier=None, datasource: DataPipelineServiceIdentifier=None):  # noqa: E501
+    def __init__(self, idtopic: DataPipelineServiceIdentifier=None, iddatasource: DataPipelineServiceIdentifier=None):  # noqa: E501
         """DataPipelineServiceTopicDataSource - a model defined in Swagger
 
-        :param topic: The topic of this DataPipelineServiceTopicDataSource.  # noqa: E501
-        :type topic: DataPipelineServiceIdentifier
-        :param datasource: The datasource of this DataPipelineServiceTopicDataSource.  # noqa: E501
-        :type datasource: DataPipelineServiceIdentifier
+        :param idtopic: The idtopic of this DataPipelineServiceTopicDataSource.  # noqa: E501
+        :type idtopic: DataPipelineServiceIdentifier
+        :param iddatasource: The iddatasource of this DataPipelineServiceTopicDataSource.  # noqa: E501
+        :type iddatasource: DataPipelineServiceIdentifier
         """
         self.swagger_types = {
-            'topic': DataPipelineServiceIdentifier,
-            'datasource': DataPipelineServiceIdentifier
+            'idtopic': DataPipelineServiceIdentifier,
+            'iddatasource': DataPipelineServiceIdentifier
         }
 
         self.attribute_map = {
-            'topic': 'topic',
-            'datasource': 'datasource'
+            'idtopic': 'idtopic',
+            'iddatasource': 'iddatasource'
         }
 
-        self._topic = topic
-        self._datasource = datasource
+        self._idtopic = idtopic
+        self._iddatasource = iddatasource
 
     @classmethod
     def from_dict(cls, dikt) -> 'DataPipelineServiceTopicDataSource':
@@ -49,43 +49,43 @@ class DataPipelineServiceTopicDataSource(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def topic(self) -> DataPipelineServiceIdentifier:
-        """Gets the topic of this DataPipelineServiceTopicDataSource.
+    def idtopic(self) -> DataPipelineServiceIdentifier:
+        """Gets the idtopic of this DataPipelineServiceTopicDataSource.
 
 
-        :return: The topic of this DataPipelineServiceTopicDataSource.
+        :return: The idtopic of this DataPipelineServiceTopicDataSource.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._topic
+        return self._idtopic
 
-    @topic.setter
-    def topic(self, topic: DataPipelineServiceIdentifier):
-        """Sets the topic of this DataPipelineServiceTopicDataSource.
+    @idtopic.setter
+    def idtopic(self, idtopic: DataPipelineServiceIdentifier):
+        """Sets the idtopic of this DataPipelineServiceTopicDataSource.
 
 
-        :param topic: The topic of this DataPipelineServiceTopicDataSource.
-        :type topic: DataPipelineServiceIdentifier
+        :param idtopic: The idtopic of this DataPipelineServiceTopicDataSource.
+        :type idtopic: DataPipelineServiceIdentifier
         """
 
-        self._topic = topic
+        self._idtopic = idtopic
 
     @property
-    def datasource(self) -> DataPipelineServiceIdentifier:
-        """Gets the datasource of this DataPipelineServiceTopicDataSource.
+    def iddatasource(self) -> DataPipelineServiceIdentifier:
+        """Gets the iddatasource of this DataPipelineServiceTopicDataSource.
 
 
-        :return: The datasource of this DataPipelineServiceTopicDataSource.
+        :return: The iddatasource of this DataPipelineServiceTopicDataSource.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._datasource
+        return self._iddatasource
 
-    @datasource.setter
-    def datasource(self, datasource: DataPipelineServiceIdentifier):
-        """Sets the datasource of this DataPipelineServiceTopicDataSource.
+    @iddatasource.setter
+    def iddatasource(self, iddatasource: DataPipelineServiceIdentifier):
+        """Sets the iddatasource of this DataPipelineServiceTopicDataSource.
 
 
-        :param datasource: The datasource of this DataPipelineServiceTopicDataSource.
-        :type datasource: DataPipelineServiceIdentifier
+        :param iddatasource: The iddatasource of this DataPipelineServiceTopicDataSource.
+        :type iddatasource: DataPipelineServiceIdentifier
         """
 
-        self._datasource = datasource
+        self._iddatasource = iddatasource

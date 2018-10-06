@@ -17,25 +17,25 @@ class DataPipelineServiceIdMetrics(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: DataPipelineServiceIdentifier=None, metrics: DataPipelineServiceKVPairs=None):  # noqa: E501
+    def __init__(self, ident: DataPipelineServiceIdentifier=None, metrics: DataPipelineServiceKVPairs=None):  # noqa: E501
         """DataPipelineServiceIdMetrics - a model defined in Swagger
 
-        :param id: The id of this DataPipelineServiceIdMetrics.  # noqa: E501
-        :type id: DataPipelineServiceIdentifier
+        :param ident: The ident of this DataPipelineServiceIdMetrics.  # noqa: E501
+        :type ident: DataPipelineServiceIdentifier
         :param metrics: The metrics of this DataPipelineServiceIdMetrics.  # noqa: E501
         :type metrics: DataPipelineServiceKVPairs
         """
         self.swagger_types = {
-            'id': DataPipelineServiceIdentifier,
+            'ident': DataPipelineServiceIdentifier,
             'metrics': DataPipelineServiceKVPairs
         }
 
         self.attribute_map = {
-            'id': 'id',
+            'ident': 'ident',
             'metrics': 'metrics'
         }
 
-        self._id = id
+        self._ident = ident
         self._metrics = metrics
 
     @classmethod
@@ -50,25 +50,25 @@ class DataPipelineServiceIdMetrics(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self) -> DataPipelineServiceIdentifier:
-        """Gets the id of this DataPipelineServiceIdMetrics.
+    def ident(self) -> DataPipelineServiceIdentifier:
+        """Gets the ident of this DataPipelineServiceIdMetrics.
 
 
-        :return: The id of this DataPipelineServiceIdMetrics.
+        :return: The ident of this DataPipelineServiceIdMetrics.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._id
+        return self._ident
 
-    @id.setter
-    def id(self, id: DataPipelineServiceIdentifier):
-        """Sets the id of this DataPipelineServiceIdMetrics.
+    @ident.setter
+    def ident(self, ident: DataPipelineServiceIdentifier):
+        """Sets the ident of this DataPipelineServiceIdMetrics.
 
 
-        :param id: The id of this DataPipelineServiceIdMetrics.
-        :type id: DataPipelineServiceIdentifier
+        :param ident: The ident of this DataPipelineServiceIdMetrics.
+        :type ident: DataPipelineServiceIdentifier
         """
 
-        self._id = id
+        self._ident = ident
 
     @property
     def metrics(self) -> DataPipelineServiceKVPairs:

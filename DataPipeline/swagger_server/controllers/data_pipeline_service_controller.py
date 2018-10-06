@@ -14,7 +14,6 @@ from swagger_server.models.data_pipeline_service_processor_topic import DataPipe
 from swagger_server.models.data_pipeline_service_state import DataPipelineServiceState  # noqa: E501
 from swagger_server.models.data_pipeline_service_topic import DataPipelineServiceTopic  # noqa: E501
 from swagger_server.models.data_pipeline_service_topic_data_source import DataPipelineServiceTopicDataSource  # noqa: E501
-from swagger_server.models.data_pipeline_service_topic_pipeline import DataPipelineServiceTopicPipeline  # noqa: E501
 from swagger_server import util
 
 
@@ -35,13 +34,11 @@ def archive_processor(uuid, body):  # noqa: E501
     return 'do some magic!'
 
 
-def associate_processor_to_sink_topic(processor_uuid, body):  # noqa: E501
+def associate_processor_to_sink_topic(body):  # noqa: E501
     """associate_processor_to_sink_topic
 
      # noqa: E501
 
-    :param processor_uuid: 
-    :type processor_uuid: str
     :param body: 
     :type body: dict | bytes
 
@@ -257,13 +254,11 @@ def register_data_source(body):  # noqa: E501
     return 'do some magic!'
 
 
-def register_data_source_to_pool(datasource_uuid, body):  # noqa: E501
+def register_data_source_to_pool(body):  # noqa: E501
     """register_data_source_to_pool
 
      # noqa: E501
 
-    :param datasource_uuid: 
-    :type datasource_uuid: str
     :param body: 
     :type body: dict | bytes
 
@@ -274,15 +269,11 @@ def register_data_source_to_pool(datasource_uuid, body):  # noqa: E501
     return 'do some magic!'
 
 
-def register_topic_for_data_source(topic_uuid, datasource_uuid, body):  # noqa: E501
+def register_topic_for_data_source(body):  # noqa: E501
     """register_topic_for_data_source
 
      # noqa: E501
 
-    :param topic_uuid: 
-    :type topic_uuid: str
-    :param datasource_uuid: 
-    :type datasource_uuid: str
     :param body: 
     :type body: dict | bytes
 
@@ -290,25 +281,6 @@ def register_topic_for_data_source(topic_uuid, datasource_uuid, body):  # noqa: 
     """
     if connexion.request.is_json:
         body = DataPipelineServiceTopicDataSource.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
-
-
-def register_topic_for_pipeline(topic_uuid, pipeline_uuid, body):  # noqa: E501
-    """register_topic_for_pipeline
-
-     # noqa: E501
-
-    :param topic_uuid: 
-    :type topic_uuid: str
-    :param pipeline_uuid: 
-    :type pipeline_uuid: str
-    :param body: 
-    :type body: dict | bytes
-
-    :rtype: DataPipelineServiceIdentifier
-    """
-    if connexion.request.is_json:
-        body = DataPipelineServiceTopicPipeline.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -329,17 +301,17 @@ def restore_pipeline_snapshot(uuid, body):  # noqa: E501
     return 'do some magic!'
 
 
-def retrieve_metrics(id_uuid, id_type=None, id_name=None):  # noqa: E501
+def retrieve_metrics(ident_uuid=None, ident_type=None, ident_name=None):  # noqa: E501
     """retrieve_metrics
 
      # noqa: E501
 
-    :param id_uuid: 
-    :type id_uuid: str
-    :param id_type: 
-    :type id_type: str
-    :param id_name: 
-    :type id_name: str
+    :param ident_uuid: 
+    :type ident_uuid: str
+    :param ident_type: 
+    :type ident_type: str
+    :param ident_name: 
+    :type ident_name: str
 
     :rtype: DataPipelineServiceIdentifier
     """
@@ -566,13 +538,11 @@ def un_pause_pool(uuid, body):  # noqa: E501
     return 'do some magic!'
 
 
-def update_metrics(id_uuid, body):  # noqa: E501
+def update_metrics(body):  # noqa: E501
     """-------------- Metrics ---------------
 
      # noqa: E501
 
-    :param id_uuid: 
-    :type id_uuid: str
     :param body: 
     :type body: dict | bytes
 

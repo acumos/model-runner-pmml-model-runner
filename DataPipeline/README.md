@@ -1,13 +1,29 @@
-# DataPipeline 
+# DataPipeline Service
 
 ## Overview
 
-TBD
-## Requirements
+This DataPipline Service , manages a data pipline delivering data to microservices plugged into the data pipeline.
+The pipeline service will enable pipelines to be created via an api and manages the operation of a pipelie.
+Pipelines are managed in "pools" , which is a organising structure to allow many pipelines to share the 
+same datasource and other objects for projects/initiatives which tend to reuse the same datasources and other transformations
+
+## Technical Requirements
 Python 3.5.2+
 
 ## Usage
-To run the server, please execute the following from the root directory:
+To run the server, please execute the following from the DataPipline directory:
+
+## Running with Docker
+
+To run the server on a Docker container, please execute the following from the root directory:
+
+```bash
+# building the image
+docker build -t swagger_server .
+
+# starting up a container
+docker run -p 8080:8080 swagger_server
+```
 
 ```
 pip3 install -r requirements.txt
@@ -30,16 +46,4 @@ To launch the integration tests, use tox:
 ```
 sudo pip install tox
 tox
-```
-
-## Running with Docker
-
-To run the server on a Docker container, please execute the following from the root directory:
-
-```bash
-# building the image
-docker build -t swagger_server .
-
-# starting up a container
-docker run -p 8080:8080 swagger_server
 ```

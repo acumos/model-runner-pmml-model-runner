@@ -11,17 +11,17 @@ consumes:
 produces:
 - "application/json"
 paths:
-  /v1/Identifier/{id.uuid}/metrics:
+  /v1/Identifier/metrics:
     get:
       tags:
       - "DataPipelineService"
       operationId: "retrieve_metrics"
       parameters:
-      - name: "id_uuid"
-        in: "path"
-        required: true
+      - name: "ident_uuid"
+        in: "query"
+        required: false
         type: "string"
-      - name: "id_type"
+      - name: "ident_type"
         in: "query"
         required: false
         type: "string"
@@ -38,7 +38,7 @@ paths:
         - "DATA"
         - "WRITE_DATASOURCE"
         - "SINK_PROCESSOR"
-      - name: "id_name"
+      - name: "ident_name"
         in: "query"
         required: false
         type: "string"
@@ -54,10 +54,6 @@ paths:
       summary: "-------------- Metrics ---------------"
       operationId: "update_metrics"
       parameters:
-      - name: "id_uuid"
-        in: "path"
-        required: true
-        type: "string"
       - in: "body"
         name: "body"
         required: true
@@ -283,6 +279,23 @@ paths:
           schema:
             $ref: "#/definitions/DataPipelineServiceState"
       x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
+  /v1/datasource/pool/register:
+    post:
+      tags:
+      - "DataPipelineService"
+      operationId: "register_data_source_to_pool"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DataPipelineServiceDataSourcePool"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/DataPipelineServiceIdentifier"
+      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
   /v1/datasource/register:
     post:
       tags:
@@ -294,27 +307,6 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/DataPipelineServiceDataSource"
-      responses:
-        200:
-          description: ""
-          schema:
-            $ref: "#/definitions/DataPipelineServiceIdentifier"
-      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/datasource/{datasource.uuid}/pool/register:
-    post:
-      tags:
-      - "DataPipelineService"
-      operationId: "register_data_source_to_pool"
-      parameters:
-      - name: "datasource_uuid"
-        in: "path"
-        required: true
-        type: "string"
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/DataPipelineServiceDataSourcePool"
       responses:
         200:
           description: ""
@@ -539,16 +531,12 @@ paths:
           schema:
             $ref: "#/definitions/DataPipelineServiceIdentifier"
       x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/processor/{processor.uuid}/topic:
+  /v1/processor/topic:
     post:
       tags:
       - "DataPipelineService"
       operationId: "associate_processor_to_sink_topic"
       parameters:
-      - name: "processor_uuid"
-        in: "path"
-        required: true
-        type: "string"
       - in: "body"
         name: "body"
         required: true
@@ -682,50 +670,17 @@ paths:
           schema:
             $ref: "#/definitions/DataPipelineServiceIdentifier"
       x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register:
+  /v1/topic/datasource/register:
     post:
       tags:
       - "DataPipelineService"
       operationId: "register_topic_for_data_source"
       parameters:
-      - name: "topic_uuid"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "datasource_uuid"
-        in: "path"
-        required: true
-        type: "string"
       - in: "body"
         name: "body"
         required: true
         schema:
           $ref: "#/definitions/DataPipelineServiceTopicDataSource"
-      responses:
-        200:
-          description: ""
-          schema:
-            $ref: "#/definitions/DataPipelineServiceIdentifier"
-      x-swagger-router-controller: "swagger_server.controllers.data_pipeline_service_controller"
-  /v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register:
-    post:
-      tags:
-      - "DataPipelineService"
-      operationId: "register_topic_for_pipeline"
-      parameters:
-      - name: "topic_uuid"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "pipeline_uuid"
-        in: "path"
-        required: true
-        type: "string"
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/DataPipelineServiceTopicPipeline"
       responses:
         200:
           description: ""
@@ -792,12 +747,12 @@ definitions:
   DataPipelineServiceDataSourcePool:
     type: "object"
     properties:
-      datasource:
+      iddatasource:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
-      pool:
+      idpool:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
     example:
-      datasource:
+      idpool:
         name: "name"
         metrics:
           kv:
@@ -807,7 +762,7 @@ definitions:
             key: "key"
         type: {}
         uuid: "uuid"
-      pool:
+      iddatasource:
         name: "name"
         metrics:
           kv:
@@ -833,12 +788,12 @@ definitions:
   DataPipelineServiceIdMetrics:
     type: "object"
     properties:
-      id:
+      ident:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
       metrics:
         $ref: "#/definitions/DataPipelineServiceKVPairs"
     example:
-      id:
+      ident:
         name: "name"
         metrics:
           kv:
@@ -982,26 +937,26 @@ definitions:
       filename:
         type: "string"
       string_encoded_payload:
-        type: "string"
-        format: "byte"
-        pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
-        x-regex: "^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"
-        x-modifiers: []
+        type: "array"
+        items:
+          type: "string"
     example:
       filename: "filename"
-      string_encoded_payload: "string_encoded_payload"
+      string_encoded_payload:
+      - "string_encoded_payload"
+      - "string_encoded_payload"
       type: {}
   DataPipelineServiceProcessorTopic:
     type: "object"
     properties:
-      processor:
+      idprocessor:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
-      topic:
+      idtopic:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
-      datasource:
+      iddatasource:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
     example:
-      datasource:
+      iddatasource:
         name: "name"
         metrics:
           kv:
@@ -1011,7 +966,7 @@ definitions:
             key: "key"
         type: {}
         uuid: "uuid"
-      topic:
+      idprocessor:
         name: "name"
         metrics:
           kv:
@@ -1021,7 +976,7 @@ definitions:
             key: "key"
         type: {}
         uuid: "uuid"
-      processor:
+      idtopic:
         name: "name"
         metrics:
           kv:
@@ -1080,12 +1035,12 @@ definitions:
   DataPipelineServiceTopicDataSource:
     type: "object"
     properties:
-      topic:
+      idtopic:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
-      datasource:
+      iddatasource:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
     example:
-      datasource:
+      iddatasource:
         name: "name"
         metrics:
           kv:
@@ -1095,7 +1050,7 @@ definitions:
             key: "key"
         type: {}
         uuid: "uuid"
-      topic:
+      idtopic:
         name: "name"
         metrics:
           kv:
@@ -1108,28 +1063,7 @@ definitions:
   DataPipelineServiceTopicPipeline:
     type: "object"
     properties:
-      topic:
+      idtopic:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
-      pipeline:
+      idpipeline:
         $ref: "#/definitions/DataPipelineServiceIdentifier"
-    example:
-      pipeline:
-        name: "name"
-        metrics:
-          kv:
-          - value: "value"
-            key: "key"
-          - value: "value"
-            key: "key"
-        type: {}
-        uuid: "uuid"
-      topic:
-        name: "name"
-        metrics:
-          kv:
-          - value: "value"
-            key: "key"
-          - value: "value"
-            key: "key"
-        type: {}
-        uuid: "uuid"

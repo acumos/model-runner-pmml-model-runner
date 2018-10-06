@@ -16,26 +16,26 @@ class DataPipelineServiceDataSourcePool(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, datasource: DataPipelineServiceIdentifier=None, pool: DataPipelineServiceIdentifier=None):  # noqa: E501
+    def __init__(self, iddatasource: DataPipelineServiceIdentifier=None, idpool: DataPipelineServiceIdentifier=None):  # noqa: E501
         """DataPipelineServiceDataSourcePool - a model defined in Swagger
 
-        :param datasource: The datasource of this DataPipelineServiceDataSourcePool.  # noqa: E501
-        :type datasource: DataPipelineServiceIdentifier
-        :param pool: The pool of this DataPipelineServiceDataSourcePool.  # noqa: E501
-        :type pool: DataPipelineServiceIdentifier
+        :param iddatasource: The iddatasource of this DataPipelineServiceDataSourcePool.  # noqa: E501
+        :type iddatasource: DataPipelineServiceIdentifier
+        :param idpool: The idpool of this DataPipelineServiceDataSourcePool.  # noqa: E501
+        :type idpool: DataPipelineServiceIdentifier
         """
         self.swagger_types = {
-            'datasource': DataPipelineServiceIdentifier,
-            'pool': DataPipelineServiceIdentifier
+            'iddatasource': DataPipelineServiceIdentifier,
+            'idpool': DataPipelineServiceIdentifier
         }
 
         self.attribute_map = {
-            'datasource': 'datasource',
-            'pool': 'pool'
+            'iddatasource': 'iddatasource',
+            'idpool': 'idpool'
         }
 
-        self._datasource = datasource
-        self._pool = pool
+        self._iddatasource = iddatasource
+        self._idpool = idpool
 
     @classmethod
     def from_dict(cls, dikt) -> 'DataPipelineServiceDataSourcePool':
@@ -49,43 +49,43 @@ class DataPipelineServiceDataSourcePool(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def datasource(self) -> DataPipelineServiceIdentifier:
-        """Gets the datasource of this DataPipelineServiceDataSourcePool.
+    def iddatasource(self) -> DataPipelineServiceIdentifier:
+        """Gets the iddatasource of this DataPipelineServiceDataSourcePool.
 
 
-        :return: The datasource of this DataPipelineServiceDataSourcePool.
+        :return: The iddatasource of this DataPipelineServiceDataSourcePool.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._datasource
+        return self._iddatasource
 
-    @datasource.setter
-    def datasource(self, datasource: DataPipelineServiceIdentifier):
-        """Sets the datasource of this DataPipelineServiceDataSourcePool.
+    @iddatasource.setter
+    def iddatasource(self, iddatasource: DataPipelineServiceIdentifier):
+        """Sets the iddatasource of this DataPipelineServiceDataSourcePool.
 
 
-        :param datasource: The datasource of this DataPipelineServiceDataSourcePool.
-        :type datasource: DataPipelineServiceIdentifier
+        :param iddatasource: The iddatasource of this DataPipelineServiceDataSourcePool.
+        :type iddatasource: DataPipelineServiceIdentifier
         """
 
-        self._datasource = datasource
+        self._iddatasource = iddatasource
 
     @property
-    def pool(self) -> DataPipelineServiceIdentifier:
-        """Gets the pool of this DataPipelineServiceDataSourcePool.
+    def idpool(self) -> DataPipelineServiceIdentifier:
+        """Gets the idpool of this DataPipelineServiceDataSourcePool.
 
 
-        :return: The pool of this DataPipelineServiceDataSourcePool.
+        :return: The idpool of this DataPipelineServiceDataSourcePool.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._pool
+        return self._idpool
 
-    @pool.setter
-    def pool(self, pool: DataPipelineServiceIdentifier):
-        """Sets the pool of this DataPipelineServiceDataSourcePool.
+    @idpool.setter
+    def idpool(self, idpool: DataPipelineServiceIdentifier):
+        """Sets the idpool of this DataPipelineServiceDataSourcePool.
 
 
-        :param pool: The pool of this DataPipelineServiceDataSourcePool.
-        :type pool: DataPipelineServiceIdentifier
+        :param idpool: The idpool of this DataPipelineServiceDataSourcePool.
+        :type idpool: DataPipelineServiceIdentifier
         """
 
-        self._pool = pool
+        self._idpool = idpool

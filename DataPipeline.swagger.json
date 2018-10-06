@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/Identifier/{id.uuid}/metrics": {
+    "/v1/Identifier/metrics": {
       "get": {
         "operationId": "RetrieveMetrics",
         "responses": {
@@ -28,13 +28,13 @@
         },
         "parameters": [
           {
-            "name": "id.uuid",
-            "in": "path",
-            "required": true,
+            "name": "ident.uuid",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
-            "name": "id.type",
+            "name": "ident.type",
             "in": "query",
             "required": false,
             "type": "string",
@@ -54,7 +54,7 @@
             "default": "READ_DATASOURCE"
           },
           {
-            "name": "id.name",
+            "name": "ident.name",
             "in": "query",
             "required": false,
             "type": "string"
@@ -76,12 +76,6 @@
           }
         },
         "parameters": [
-          {
-            "name": "id.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
@@ -401,6 +395,32 @@
         ]
       }
     },
+    "/v1/datasource/pool/register": {
+      "post": {
+        "operationId": "RegisterDataSourceToPool",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataPipelineServiceDataSourcePool"
+            }
+          }
+        ],
+        "tags": [
+          "DataPipelineService"
+        ]
+      }
+    },
     "/v1/datasource/register": {
       "post": {
         "operationId": "RegisterDataSource",
@@ -419,38 +439,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/DataPipelineServiceDataSource"
-            }
-          }
-        ],
-        "tags": [
-          "DataPipelineService"
-        ]
-      }
-    },
-    "/v1/datasource/{datasource.uuid}/pool/register": {
-      "post": {
-        "operationId": "RegisterDataSourceToPool",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceIdentifier"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "datasource.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceDataSourcePool"
             }
           }
         ],
@@ -785,7 +773,7 @@
         ]
       }
     },
-    "/v1/processor/{processor.uuid}/topic": {
+    "/v1/processor/topic": {
       "post": {
         "operationId": "Associate_Processor_ToSinkTopic",
         "responses": {
@@ -797,12 +785,6 @@
           }
         },
         "parameters": [
-          {
-            "name": "processor.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
@@ -1003,7 +985,7 @@
         ]
       }
     },
-    "/v1/topic/{topic.uuid}/datasource/{datasource.uuid}/register": {
+    "/v1/topic/datasource/register": {
       "post": {
         "operationId": "RegisterTopicForDataSource",
         "responses": {
@@ -1016,61 +998,11 @@
         },
         "parameters": [
           {
-            "name": "topic.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "datasource.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/DataPipelineServiceTopicDataSource"
-            }
-          }
-        ],
-        "tags": [
-          "DataPipelineService"
-        ]
-      }
-    },
-    "/v1/topic/{topic.uuid}/datasource/{pipeline.uuid}/register": {
-      "post": {
-        "operationId": "RegisterTopicForPipeline",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceIdentifier"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "topic.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "pipeline.uuid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DataPipelineServiceTopicPipeline"
             }
           }
         ],
@@ -1151,10 +1083,10 @@
     "DataPipelineServiceDataSourcePool": {
       "type": "object",
       "properties": {
-        "datasource": {
+        "iddatasource": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         },
-        "pool": {
+        "idpool": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         }
       }
@@ -1176,7 +1108,7 @@
     "DataPipelineServiceIdMetrics": {
       "type": "object",
       "properties": {
-        "id": {
+        "ident": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         },
         "metrics": {
@@ -1281,21 +1213,23 @@
           "type": "string"
         },
         "string_encoded_payload": {
-          "type": "string",
-          "format": "byte"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
     "DataPipelineServiceProcessorTopic": {
       "type": "object",
       "properties": {
-        "processor": {
+        "idprocessor": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         },
-        "topic": {
+        "idtopic": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         },
-        "datasource": {
+        "iddatasource": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         }
       }
@@ -1349,10 +1283,10 @@
     "DataPipelineServiceTopicDataSource": {
       "type": "object",
       "properties": {
-        "topic": {
+        "idtopic": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         },
-        "datasource": {
+        "iddatasource": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         }
       }
@@ -1360,10 +1294,10 @@
     "DataPipelineServiceTopicPipeline": {
       "type": "object",
       "properties": {
-        "topic": {
+        "idtopic": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         },
-        "pipeline": {
+        "idpipeline": {
           "$ref": "#/definitions/DataPipelineServiceIdentifier"
         }
       }

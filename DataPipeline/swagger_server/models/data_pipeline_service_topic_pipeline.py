@@ -16,26 +16,26 @@ class DataPipelineServiceTopicPipeline(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, topic: DataPipelineServiceIdentifier=None, pipeline: DataPipelineServiceIdentifier=None):  # noqa: E501
+    def __init__(self, idtopic: DataPipelineServiceIdentifier=None, idpipeline: DataPipelineServiceIdentifier=None):  # noqa: E501
         """DataPipelineServiceTopicPipeline - a model defined in Swagger
 
-        :param topic: The topic of this DataPipelineServiceTopicPipeline.  # noqa: E501
-        :type topic: DataPipelineServiceIdentifier
-        :param pipeline: The pipeline of this DataPipelineServiceTopicPipeline.  # noqa: E501
-        :type pipeline: DataPipelineServiceIdentifier
+        :param idtopic: The idtopic of this DataPipelineServiceTopicPipeline.  # noqa: E501
+        :type idtopic: DataPipelineServiceIdentifier
+        :param idpipeline: The idpipeline of this DataPipelineServiceTopicPipeline.  # noqa: E501
+        :type idpipeline: DataPipelineServiceIdentifier
         """
         self.swagger_types = {
-            'topic': DataPipelineServiceIdentifier,
-            'pipeline': DataPipelineServiceIdentifier
+            'idtopic': DataPipelineServiceIdentifier,
+            'idpipeline': DataPipelineServiceIdentifier
         }
 
         self.attribute_map = {
-            'topic': 'topic',
-            'pipeline': 'pipeline'
+            'idtopic': 'idtopic',
+            'idpipeline': 'idpipeline'
         }
 
-        self._topic = topic
-        self._pipeline = pipeline
+        self._idtopic = idtopic
+        self._idpipeline = idpipeline
 
     @classmethod
     def from_dict(cls, dikt) -> 'DataPipelineServiceTopicPipeline':
@@ -49,43 +49,43 @@ class DataPipelineServiceTopicPipeline(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def topic(self) -> DataPipelineServiceIdentifier:
-        """Gets the topic of this DataPipelineServiceTopicPipeline.
+    def idtopic(self) -> DataPipelineServiceIdentifier:
+        """Gets the idtopic of this DataPipelineServiceTopicPipeline.
 
 
-        :return: The topic of this DataPipelineServiceTopicPipeline.
+        :return: The idtopic of this DataPipelineServiceTopicPipeline.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._topic
+        return self._idtopic
 
-    @topic.setter
-    def topic(self, topic: DataPipelineServiceIdentifier):
-        """Sets the topic of this DataPipelineServiceTopicPipeline.
+    @idtopic.setter
+    def idtopic(self, idtopic: DataPipelineServiceIdentifier):
+        """Sets the idtopic of this DataPipelineServiceTopicPipeline.
 
 
-        :param topic: The topic of this DataPipelineServiceTopicPipeline.
-        :type topic: DataPipelineServiceIdentifier
+        :param idtopic: The idtopic of this DataPipelineServiceTopicPipeline.
+        :type idtopic: DataPipelineServiceIdentifier
         """
 
-        self._topic = topic
+        self._idtopic = idtopic
 
     @property
-    def pipeline(self) -> DataPipelineServiceIdentifier:
-        """Gets the pipeline of this DataPipelineServiceTopicPipeline.
+    def idpipeline(self) -> DataPipelineServiceIdentifier:
+        """Gets the idpipeline of this DataPipelineServiceTopicPipeline.
 
 
-        :return: The pipeline of this DataPipelineServiceTopicPipeline.
+        :return: The idpipeline of this DataPipelineServiceTopicPipeline.
         :rtype: DataPipelineServiceIdentifier
         """
-        return self._pipeline
+        return self._idpipeline
 
-    @pipeline.setter
-    def pipeline(self, pipeline: DataPipelineServiceIdentifier):
-        """Sets the pipeline of this DataPipelineServiceTopicPipeline.
+    @idpipeline.setter
+    def idpipeline(self, idpipeline: DataPipelineServiceIdentifier):
+        """Sets the idpipeline of this DataPipelineServiceTopicPipeline.
 
 
-        :param pipeline: The pipeline of this DataPipelineServiceTopicPipeline.
-        :type pipeline: DataPipelineServiceIdentifier
+        :param idpipeline: The idpipeline of this DataPipelineServiceTopicPipeline.
+        :type idpipeline: DataPipelineServiceIdentifier
         """
 
-        self._pipeline = pipeline
+        self._idpipeline = idpipeline
