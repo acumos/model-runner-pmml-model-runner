@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5cd820a_c597966b",
+        "filename": ".idea/workspace.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-08T12:48:46Z",
+      "side": 1,
+      "message": "Please remove this IDE metadata file",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 93
+      },
+      "revId": "e965bb1d9c10d676c3a9ee9dc757d6137b28b0b8",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    }
+  ]
+}
