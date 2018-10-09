@@ -1,0 +1,295 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50550565_b3c58a3a",
+        "filename": "DataPipeline.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "There\u0027s a file-encoding problem here, please fix.  Easiest to handle by using just the plain old @ sign instead of the special c-in-a-circle character code.",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8910059_701feae8",
+        "filename": "DataPipeline/.dockerignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "What is .dockerignore?  This looks like a .gitignore file, but you already have one of those; can this be removed?",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4dd07dde_a404eeeb",
+        "filename": "DataPipeline/.swagger-codegen-ignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Does this kind of tool metadata have to be committed?",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca11b827_51df9265",
+        "filename": "DataPipeline/.travis.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "What tool is travis?  Does this have to be committed? Usually IDE data is not committed to Gerrit.",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "397a9de2_2ee2c53c",
+        "filename": "DataPipeline/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "probably appropriate to put the Acumos license here",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77feaa9b_13046d16",
+        "filename": "DataPipeline/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Please add license header",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77f0a441_fccc3c62",
+        "filename": "DataPipeline/git_push.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Why is this git helper script committed?  It is not required for the Data Pipeline so I recommend skipping this, especially because it seems to be hardwired for github.com.",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eabd40a5_f9a3d58e",
+        "filename": "DataPipeline/swagger_server/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Probably this should be configurable",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16287a46_c52de30a",
+        "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "This probably should start with #!/user/bin/env Python3 (?)",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4721489_abf93058",
+        "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Pls fix encoding error",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eccb6cea_7e4a75a1",
+        "filename": "DataPipeline/swagger_server/models/data_pipeline_service_data_source.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "This file identifies itself as using UTF-8 encoding, but this funny character mark means something went wrong",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08fda327_ec2a1517",
+        "filename": "DataPipeline/swagger_server/models/data_pipeline_service_data_source.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Why is generated code being committed?  Can this project be generated from swagger spec as part of the build process?",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fa4d1d7_b0815cdf",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Please fix",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fecd4b2f_00dc0558",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "Typo",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac56a2b9_d2c649a3",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-10-09T16:07:47Z",
+      "side": 1,
+      "message": "This isn\u0027t a functional readme, it\u0027s just a license file.  Please add a description of this project/repo content.",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    }
+  ]
+}
