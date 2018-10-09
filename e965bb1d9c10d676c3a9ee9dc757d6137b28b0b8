@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "60026e61_928f91af",
+        "filename": ".idea/workspace.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-09T01:08:45Z",
+      "side": 1,
+      "message": "Chris, I would like to abandon this changeset.\nI have created a new one with the README appended to the python files and removed the .idea\nPlease excust the noobie issues for chekins here.\nGaurav is helping me fix the checkings.",
+      "parentUuid": "e5cd820a_c597966b",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 93
+      },
+      "revId": "e965bb1d9c10d676c3a9ee9dc757d6137b28b0b8",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a5ab48b_0a3fe2e0",
         "filename": "DataPipeline/README.md",
         "patchSetId": 1
