@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "2d59a1ad_7ee544ee",
+        "filename": "DataPipeline.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "some special char?",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8910059_701feae8",
         "filename": "DataPipeline/.dockerignore",
         "patchSetId": 3
@@ -110,6 +133,23 @@
     },
     {
       "key": {
+        "uuid": "35d73a7f_70eb953e",
+        "filename": "DataPipeline/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "missing license statement \nrefer https://gerrit.acumos.org/r/#/c/2769/11/README.md",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77f0a441_fccc3c62",
         "filename": "DataPipeline/git_push.sh",
         "patchSetId": 3
@@ -121,6 +161,63 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "Why is this git helper script committed?  It is not required for the Data Pipeline so I recommend skipping this, especially because it seems to be hardwired for github.com.",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59c55329_2b9901f4",
+        "filename": "DataPipeline/requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "just to be consistent, can this file be renamed as setup.py\n\nall other CMLP python project using the same approach\n\nhttps://gerrit.acumos.org/r/gitweb?p\u003dmodel-deployments/predictor-management.git;a\u003dtree",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "800ef645_8a8ac627",
+        "filename": "DataPipeline/swagger_server/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "other CMLP project dont need swagger_server folder auto generated\nNot sure if we can use the same approach\n\nhttps://gerrit.acumos.org/r/gitweb?p\u003dmodel-runner/h2o-model-runner.git;a\u003dtree",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4584b00c_3a360317",
+        "filename": "DataPipeline/swagger_server/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "fix encoding error",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 12
+      },
       "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
       "unresolved": false
@@ -190,6 +287,29 @@
     },
     {
       "key": {
+        "uuid": "9bee01ef_7791f53e",
+        "filename": "DataPipeline/swagger_server/encoder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "fix encoding error for all files",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eccb6cea_7e4a75a1",
         "filename": "DataPipeline/swagger_server/models/data_pipeline_service_data_source.py",
         "patchSetId": 3
@@ -229,6 +349,29 @@
         "startChar": 31,
         "endLine": 30,
         "endChar": 32
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1404f491_87ebfccf",
+        "filename": "LICENSE.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-10T16:29:48Z",
+      "side": 1,
+      "message": "i think we need space after AT\u0026T",
+      "range": {
+        "startLine": 5,
+        "startChar": 47,
+        "endLine": 5,
+        "endChar": 53
       },
       "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
