@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ea0535a6_1a3f51df",
+        "filename": "DataPipeline.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Strange that the original file has @ character.\nRefixing to @ \nHope it takes\n\nDONE",
+      "parentUuid": "2d59a1ad_7ee544ee",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8910059_701feae8",
         "filename": "DataPipeline/.dockerignore",
         "patchSetId": 3
@@ -59,6 +83,24 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "What is .dockerignore?  This looks like a .gitignore file, but you already have one of those; can this be removed?",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "136d8874_cdfd3592",
+        "filename": "DataPipeline/.dockerignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": ".docker ignore is for the docker build command. Basically it ignores items which should not be built into docker.\n\nHave removed it for now",
+      "parentUuid": "e8910059_701feae8",
       "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
       "unresolved": false
@@ -82,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "78b44612_09e4aec3",
+        "filename": "DataPipeline/.swagger-codegen-ignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Have removed it",
+      "parentUuid": "4dd07dde_a404eeeb",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca11b827_51df9265",
         "filename": "DataPipeline/.travis.yml",
         "patchSetId": 3
@@ -99,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "10fa98b0_82a6ad71",
+        "filename": "DataPipeline/.travis.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "I removed it. .travis is used to trigger build with github . My oversight on this effort with my toolset.\nHave removed it with git rm",
+      "parentUuid": "ca11b827_51df9265",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "397a9de2_2ee2c53c",
         "filename": "DataPipeline/Dockerfile",
         "patchSetId": 3
@@ -110,6 +188,24 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "probably appropriate to put the Acumos license here",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3373423c_ac25cbb9",
+        "filename": "DataPipeline/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "397a9de2_2ee2c53c",
       "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
       "unresolved": false
@@ -150,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "64c0092f_b61b6caf",
+        "filename": "DataPipeline/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Added it now. Done",
+      "parentUuid": "35d73a7f_70eb953e",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77f0a441_fccc3c62",
         "filename": "DataPipeline/git_push.sh",
         "patchSetId": 3
@@ -161,6 +275,24 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "Why is this git helper script committed?  It is not required for the Data Pipeline so I recommend skipping this, especially because it seems to be hardwired for github.com.",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eda527de_e9a54169",
+        "filename": "DataPipeline/git_push.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done. Removing this file completely",
+      "parentUuid": "77f0a441_fccc3c62",
       "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
       "unresolved": false
@@ -184,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "def78d92_e83eabd0",
+        "filename": "DataPipeline/requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "the requirements file is a little different (from example provided)",
+      "parentUuid": "59c55329_2b9901f4",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "800ef645_8a8ac627",
         "filename": "DataPipeline/swagger_server/__init__.py",
         "patchSetId": 3
@@ -201,6 +351,24 @@
     },
     {
       "key": {
+        "uuid": "86e4b392_d8e7981f",
+        "filename": "DataPipeline/swagger_server/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "I am using the automations on this with connexion which will be enhanced further.\nI am trying not to be limited by manual means to create artifacts but to speed up development.",
+      "parentUuid": "800ef645_8a8ac627",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4584b00c_3a360317",
         "filename": "DataPipeline/swagger_server/__main__.py",
         "patchSetId": 3
@@ -212,6 +380,30 @@
       "writtenOn": "2018-10-10T16:29:48Z",
       "side": 1,
       "message": "fix encoding error",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65c8183b_e13433a3",
+        "filename": "DataPipeline/swagger_server/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4584b00c_3a360317",
       "range": {
         "startLine": 4,
         "startChar": 11,
@@ -247,6 +439,30 @@
     },
     {
       "key": {
+        "uuid": "e6103e41_593d4081",
+        "filename": "DataPipeline/swagger_server/__main__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "It runs inside a docker container . So does it matter as the external ports can be allocated by th scheduler",
+      "parentUuid": "eabd40a5_f9a3d58e",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16287a46_c52de30a",
         "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
         "patchSetId": 3
@@ -264,6 +480,24 @@
     },
     {
       "key": {
+        "uuid": "2d68b557_79149592",
+        "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16287a46_c52de30a",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4721489_abf93058",
         "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
         "patchSetId": 3
@@ -275,6 +509,30 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "Pls fix encoding error",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24f47a25_b00224e0",
+        "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4721489_abf93058",
       "range": {
         "startLine": 3,
         "startChar": 10,
@@ -310,6 +568,30 @@
     },
     {
       "key": {
+        "uuid": "2e7989b1_dc45212b",
+        "filename": "DataPipeline/swagger_server/encoder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Completed. Unable to edit on browser so made the changes on the commit",
+      "parentUuid": "9bee01ef_7791f53e",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eccb6cea_7e4a75a1",
         "filename": "DataPipeline/swagger_server/models/data_pipeline_service_data_source.py",
         "patchSetId": 3
@@ -321,6 +603,30 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "This file identifies itself as using UTF-8 encoding, but this funny character mark means something went wrong",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bb7d15f_014b38f2",
+        "filename": "DataPipeline/swagger_server/models/data_pipeline_service_data_source.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eccb6cea_7e4a75a1",
       "range": {
         "startLine": 3,
         "startChar": 11,
@@ -356,6 +662,30 @@
     },
     {
       "key": {
+        "uuid": "08626bcf_db830ddb",
+        "filename": "DataPipeline/swagger_server/models/data_pipeline_service_data_source.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "This is the first cut from a specification.\nAll the code will be edited after the spec and initial checkin.\nGenerating after this point is not intended@this time",
+      "parentUuid": "08fda327_ec2a1517",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1404f491_87ebfccf",
         "filename": "LICENSE.txt",
         "patchSetId": 3
@@ -367,6 +697,30 @@
       "writtenOn": "2018-10-10T16:29:48Z",
       "side": 1,
       "message": "i think we need space after AT\u0026T",
+      "range": {
+        "startLine": 5,
+        "startChar": 47,
+        "endLine": 5,
+        "endChar": 53
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0cac2d3b_ddc6f6a7",
+        "filename": "LICENSE.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1404f491_87ebfccf",
       "range": {
         "startLine": 5,
         "startChar": 47,
@@ -402,6 +756,30 @@
     },
     {
       "key": {
+        "uuid": "94cfb75d_ddcf38bd",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fa4d1d7_b0815cdf",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 12
+      },
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fecd4b2f_00dc0558",
         "filename": "README.md",
         "patchSetId": 3
@@ -419,6 +797,24 @@
     },
     {
       "key": {
+        "uuid": "00d4a171_4b6bf25a",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fecd4b2f_00dc0558",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac56a2b9_d2c649a3",
         "filename": "README.md",
         "patchSetId": 3
@@ -430,6 +826,24 @@
       "writtenOn": "2018-10-09T16:07:47Z",
       "side": 1,
       "message": "This isn\u0027t a functional readme, it\u0027s just a license file.  Please add a description of this project/repo content.",
+      "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43365fdd_d1156de8",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 261
+      },
+      "writtenOn": "2018-10-26T02:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac56a2b9_d2c649a3",
       "revId": "e6c992beeab1a8a4b36c6bf99a0a5421466e0307",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
       "unresolved": false
