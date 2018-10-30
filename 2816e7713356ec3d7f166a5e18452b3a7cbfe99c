@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "545e021a_4a1ec79b",
+        "filename": ".idea/libraries/R_User_Library.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-30T16:36:40Z",
+      "side": 1,
+      "message": "please add this to gitignore\n\nand delete from here",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86f3c25e_f29b933e",
+        "filename": ".idea/vcs.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-30T16:36:40Z",
+      "side": 1,
+      "message": "please add this to .gitignore\n\nand delete from here",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "972e5472_8442429d",
+        "filename": "DataPipeline/swagger_server/swagger/swagger.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-30T16:36:40Z",
+      "side": 1,
+      "message": "try to run on local, able to access swagger.json but dont know how to access swagger.html\n\ncan u please add swagger.html to see swagger in better way",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7778b13_da4b7bbf",
+        "filename": "docs/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2018-10-30T16:36:40Z",
+      "side": 1,
+      "message": "please add .rst files under docs folder\n\nreference https://gerrit.acumos.org/r/gitweb?p\u003don-boarding/model-management.git;a\u003dtree;f\u003ddocs;h\u003de398552ca14197c130d086731318cdaaa3315572;hb\u003dHEAD",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    }
+  ]
+}
