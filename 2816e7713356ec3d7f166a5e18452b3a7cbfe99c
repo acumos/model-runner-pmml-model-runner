@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "eeeb6012_e33dd249",
+        "filename": ".idea/libraries/R_User_Library.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "Remove IDE metadata like this",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "86f3c25e_f29b933e",
         "filename": ".idea/vcs.xml",
         "patchSetId": 5
@@ -33,6 +50,143 @@
       "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
       "serverId": "655300a2-7a56-4504-9153-881edd907bea",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79c0eee8_7af3b39c",
+        "filename": ".idea/vcs.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "remove IDE metadata like this",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd3d3532_3e13b7b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "please remove this blank line, keep the footer lines together",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df567163_14218872",
+        "filename": "DataPipeline.swagger.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "Is this file generated? If so, why commit it?",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a83d47a8_a286cd28",
+        "filename": "DataPipeline/.swagger-codegen/VERSION",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "This appears to be a generated file, can it be removed?",
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f35c26ec_bdb426f1",
+        "filename": "DataPipeline/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "Is something missing here? These instructions seem to direct me to run the same server twice, once in a docker and once outside (?)",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 3
+      },
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "451fa68b_5c01ac6c",
+        "filename": "DataPipeline/setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "Is this a data pipeline, or a swagger server?",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 22
+      },
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44b764b6_c5dfdd0a",
+        "filename": "DataPipeline/swagger_server/controllers/data_pipeline_service_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4
+      },
+      "writtenOn": "2018-11-05T22:16:09Z",
+      "side": 1,
+      "message": "Based on the \"do some magic\" return value, I have to ask, perhaps this is not ready to be deployed and tested?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 4
+      },
+      "revId": "2816e7713356ec3d7f166a5e18452b3a7cbfe99c",
+      "serverId": "655300a2-7a56-4504-9153-881edd907bea",
+      "unresolved": true
     },
     {
       "key": {
